@@ -1,0 +1,11 @@
+# robots.txt for Veyronix Technology Private Limited
+User-agent: *
+Allow: /
+
+# Private Administrative & API Endpoints
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+Disallow: /api/*
+
+Sitemap: https://veyronixtechnologies.vercel.app/sitemap.xml

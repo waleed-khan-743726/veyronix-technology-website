@@ -1,6 +1,6 @@
 /**
  * Veyronix Technology — Interactive Client Engine
- * Systems Visualization, Motion Dynamics, Accessible Navigation & Form Micro-UX
+ * Systems Visualization, Motion Dynamics, Navigation & Real Backend Form Integration
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroDataPulse();
   initRealityMatrix();
   initCardSpotlight();
-  initContactFormUX();
+  initContactFormBackend();
   initCopyrightYear();
 });
 
@@ -90,7 +90,6 @@ function initMobileDrawer() {
     }
   });
 
-  // Mobile submenu accordion
   document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -131,7 +130,7 @@ function initDropdownA11y() {
 }
 
 /* ==========================================================================
-   5. HERO BUSINESS AUTOMATION DATA PULSE (Deliberate Systems Visualization)
+   5. HERO BUSINESS AUTOMATION DATA PULSE
    ========================================================================== */
 function initHeroDataPulse() {
   const nodes = document.querySelectorAll('.arch-node');
@@ -195,9 +194,18 @@ function initCardSpotlight() {
 }
 
 /* ==========================================================================
-   8. CONTACT FORM MICRO-UX & EXPANDABLE TECHNICAL DETAILS
+   8. REAL BACKEND CONTACT FORM & SUBMISSION LIFECYCLE
    ========================================================================== */
-function initContactFormUX() {
+function initContactFormBackend() {
+  const form = document.querySelector('form[data-project-inquiry-form]');
+  if (!form) return;
+
+  // Set anti-spam timestamp
+  const timestampInput = form.querySelector('#_form_t');
+  if (timestampInput) {
+    timestampInput.value = Date.now().toString();
+  }
+
   // Accordion toggle for optional technical details
   const toggleTechBtn = document.querySelector('[data-toggle-tech-details]');
   const techDetailsPanel = document.querySelector('[data-tech-details-panel]');
@@ -206,43 +214,147 @@ function initContactFormUX() {
       e.preventDefault();
       const isHidden = techDetailsPanel.style.display === 'none';
       techDetailsPanel.style.display = isHidden ? 'grid' : 'none';
-      toggleTechBtn.textContent = isHidden ? '− Hide Technical Details' : '+ Add Technical Details (Timeline, Stack, Timezone)';
+      toggleTechBtn.textContent = isHidden
+        ? '− Hide Technical Details'
+        : '+ Add Technical Details (Timeline, Current Stack, Phone, Timezone)';
     });
   }
 
-  document.querySelectorAll('form[data-project-inquiry-form]').forEach(form => {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalText = submitBtn ? submitBtn.innerHTML : 'Send Project Brief';
-
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = 'Validating Scope...';
-      }
-
-      setTimeout(() => {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = '✓ Project Brief Received';
+  // Form field focus starts tracking
+  let formStarted = false;
+  form.querySelectorAll('input, select, textarea').forEach(input => {
+    input.addEventListener('focus', () => {
+      if (!formStarted) {
+        formStarted = true;
+        if (typeof window.trackVeyronixEvent === 'function') {
+          window.trackVeyronixEvent('contact_form_start', {
+            source_page: window.location.pathname
+          });
         }
+      }
+    }, { once: true });
+  });
 
-        const notice = form.querySelector('.form-notice');
-        if (notice) {
-          notice.style.display = 'block';
-          notice.style.padding = '14px 18px';
-          notice.style.marginTop = '16px';
-          notice.style.borderRadius = '8px';
-          notice.style.background = 'rgba(213, 180, 95, 0.12)';
-          notice.style.border = '1px solid rgba(213, 180, 95, 0.40)';
-          notice.style.fontSize = '0.86rem';
-          notice.style.color = '#E5CB82';
-          notice.innerHTML = '<strong>✓ Brief Captured:</strong> Your project requirements have been validated. Our engineering team reviews inquiries within 24 business hours.';
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const notice = form.querySelector('.form-notice');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Send Project Brief →';
+
+    const setNotice = (type, message) => {
+      if (!notice) return;
+      notice.style.display = 'block';
+      notice.style.padding = '14px 18px';
+      notice.style.borderRadius = '8px';
+      notice.style.fontSize = '0.88rem';
+      notice.style.lineHeight = '1.5';
+
+      if (type === 'success') {
+        notice.style.background = 'rgba(213, 180, 95, 0.12)';
+        notice.style.border = '1px solid rgba(213, 180, 95, 0.40)';
+        notice.style.color = '#E5CB82';
+        notice.innerHTML = message;
+      } else if (type === 'rate_limit') {
+        notice.style.background = 'rgba(234, 179, 8, 0.12)';
+        notice.style.border = '1px solid rgba(234, 179, 8, 0.40)';
+        notice.style.color = '#FDE047';
+        notice.innerHTML = `<strong>⚠️ Rate Limited:</strong> ${message}`;
+      } else {
+        notice.style.background = 'rgba(239, 68, 68, 0.12)';
+        notice.style.border = '1px solid rgba(239, 68, 68, 0.40)';
+        notice.style.color = '#FCA5A5';
+        notice.innerHTML = `<strong>✕ Error:</strong> ${message}`;
+      }
+    };
+
+    // Client-side quick check
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    if (!data.firstName || !data.email || !data.company || !data.description) {
+      setNotice('error', 'Please fill in all required fields (Name, Work Email, Company, and Project Brief).');
+      return;
+    }
+
+    // Merge marketing attribution data
+    const attribution = typeof window.getVeyronixAttribution === 'function'
+      ? window.getVeyronixAttribution()
+      : {};
+
+    const payload = {
+      ...data,
+      pageSubmittedFrom: window.location.pathname,
+      ...attribution
+    };
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Validating & Transmitting Brief...';
+    }
+
+    if (typeof window.trackVeyronixEvent === 'function') {
+      window.trackVeyronixEvent('contact_form_submit', {
+        project_type: data.projectType,
+        budget: data.budget
+      });
+    }
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setNotice('success', `
+          <strong>✓ Project Brief Received Successfully:</strong><br>
+          Your requirements have been securely logged in our system. Our engineering team reviews submissions within 24 business hours.<br>
+          <span style="font-family:var(--font-mono); font-size:0.80rem; margin-top:8px; display:inline-block; color:#FFFFFF;">
+            Reference ID: <strong>${result.leadId}</strong>
+          </span>
+        `);
+
+        if (typeof window.trackVeyronixEvent === 'function') {
+          window.trackVeyronixEvent('contact_form_success', {
+            lead_id: result.leadId,
+            project_type: data.projectType,
+            budget: data.budget
+          });
         }
 
         form.reset();
-      }, 700);
-    });
+        if (timestampInput) timestampInput.value = Date.now().toString();
+        if (submitBtn) submitBtn.innerHTML = '✓ Brief Sent';
+
+      } else if (response.status === 429) {
+        setNotice('rate_limit', result.message || 'Too many submissions received. Please wait a few minutes.');
+        if (typeof window.trackVeyronixEvent === 'function') {
+          window.trackVeyronixEvent('contact_form_error', { error_code: 'RATE_LIMITED' });
+        }
+        if (submitBtn) submitBtn.innerHTML = originalBtnText;
+
+      } else {
+        setNotice('error', result.message || 'We could not submit your brief right now. Please try again or contact veyronixtechnologies@gmail.com directly.');
+        if (typeof window.trackVeyronixEvent === 'function') {
+          window.trackVeyronixEvent('contact_form_error', { error_code: result.code || 'VALIDATION_ERROR' });
+        }
+        if (submitBtn) submitBtn.innerHTML = originalBtnText;
+      }
+
+    } catch (networkErr) {
+      console.error('[Contact Form Network Error]', networkErr);
+      setNotice('error', 'Network error connecting to the Veyronix API. Please check your internet connection or email veyronixtechnologies@gmail.com directly.');
+      if (submitBtn) submitBtn.innerHTML = originalBtnText;
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
   });
 }
 

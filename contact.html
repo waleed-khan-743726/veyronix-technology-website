@@ -14,6 +14,7 @@
   <meta property="og:image" content="assets/brand/og-image.png">
 
   <link rel="stylesheet" href="styles.css">
+  <script src="data/analytics.js" defer></script>
 </head>
 <body>
 
@@ -79,7 +80,15 @@
         <div class="glass-card" style="padding:40px;">
           <h2 style="font-size:1.45rem; margin-bottom:24px; color:var(--text-primary);">Project Scope & Requirements</h2>
           
-          <form data-project-inquiry-form>
+          <form data-project-inquiry-form novalidate>
+            <!-- Anti-Spam Honeypot Field (Invisible to human users) -->
+            <div style="position:absolute; left:-9999px; opacity:0; pointer-events:none;" aria-hidden="true">
+              <input type="text" name="_hp_company_url" id="_hp_company_url" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- Form Render Timestamp -->
+            <input type="hidden" name="_t" id="_form_t" value="">
+
             <div class="form-grid">
               
               <!-- First Name -->
@@ -90,8 +99,8 @@
 
               <!-- Last Name -->
               <div class="form-field">
-                <label for="lastName">Last Name *</label>
-                <input type="text" id="lastName" name="lastName" required placeholder="e.g. Morgan" autocomplete="family-name">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="e.g. Morgan" autocomplete="family-name">
               </div>
 
               <!-- Work Email -->
@@ -111,14 +120,14 @@
                 <label for="projectType">Primary Project Scope *</label>
                 <select id="projectType" name="projectType" required>
                   <option value="" disabled selected>Select scope...</option>
-                  <option value="AI Automation">AI Workflow Automation (n8n / Make / Python)</option>
-                  <option value="AI Agents">Custom AI Agents & Copilots (RAG / LLMs)</option>
-                  <option value="GoHighLevel">GoHighLevel (GHL) CRM Architecture</option>
-                  <option value="CRM Routing">CRM & Inbound Lead Routing</option>
-                  <option value="API Integration">API & Custom Systems Integration</option>
-                  <option value="Web/SaaS Dev">Web Application / SaaS Development</option>
-                  <option value="Computer Vision">AI & Computer Vision Engineering</option>
-                  <option value="Other">Other / Custom Engineering Scope</option>
+                  <option value="AI Business Automation">AI Workflow Automation (n8n / Make / Python)</option>
+                  <option value="Custom AI Agents">Custom AI Agents & Copilots (RAG / LLMs)</option>
+                  <option value="GoHighLevel (GHL) Engine">GoHighLevel (GHL) CRM Architecture</option>
+                  <option value="CRM & Inbound Lead Routing">CRM & Inbound Lead Routing</option>
+                  <option value="API & Systems Integration">API & Custom Systems Integration</option>
+                  <option value="Web & SaaS Platform Development">Web Application / SaaS Development</option>
+                  <option value="Computer Vision & Edge">AI & Computer Vision Engineering</option>
+                  <option value="Other Scope">Other / Custom Engineering Scope</option>
                 </select>
               </div>
 
@@ -164,9 +173,9 @@
                   <label for="timeline">Target Timeline</label>
                   <select id="timeline" name="timeline">
                     <option value="Immediate (< 2 weeks)">Immediate (&lt; 2 weeks)</option>
-                    <option value="1 month" selected>Within 1 Month</option>
-                    <option value="2-3 months">2 – 3 Months</option>
-                    <option value="Flexible">Exploratory / Flexible</option>
+                    <option value="Within 1 Month" selected>Within 1 Month</option>
+                    <option value="2-3 Months">2 – 3 Months</option>
+                    <option value="Exploratory / Flexible">Exploratory / Flexible</option>
                   </select>
                 </div>
 
@@ -191,7 +200,8 @@
 
             </div>
 
-            <div class="form-notice" style="display:none;"></div>
+            <!-- Real-time Submission Status Notice Container -->
+            <div class="form-notice" style="display:none; margin-top:16px;" role="alert"></div>
           </form>
         </div>
 
@@ -280,12 +290,12 @@
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Company</h4>
+          <h4>Legal & Company</h4>
           <ul>
             <li><a href="about.html">About Veyronix</a></li>
             <li><a href="projects.html">Work & Portfolio</a></li>
-            <li><a href="case-study-aervion.html">Aervion Drone Study</a></li>
-            <li><a href="contact.html">Start a Project</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
           </ul>
         </div>
         <div class="footer-col">

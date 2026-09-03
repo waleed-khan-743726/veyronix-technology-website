@@ -1,11 +1,19 @@
 {
   "name": "veyronix-technology-website",
-  "version": "1.0.0",
-  "description": "Veyronix Technology Private Limited - Official Website",
+  "version": "1.1.0",
+  "description": "Veyronix Technology Private Limited - Official Website & Operational Backend",
   "private": true,
+  "type": "module",
   "scripts": {
-    "start": "npx serve .",
+    "dev": "npx serve .",
+    "test": "node test_backend.js",
     "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "firebase-admin": "^12.7.0",
+    "googleapis": "^144.0.0",
+    "resend": "^4.1.2"
   },
   "keywords": [
     "ai-automation",
