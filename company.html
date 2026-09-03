@@ -6,6 +6,19 @@
   <title>Redirecting to About | Veyronix Technology</title>
   <link rel="canonical" href="about.html">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('veyronix-theme');
+        if (saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <script src="data/analytics.js" defer></script>
 </head>
 <body style="display:grid; place-items:center; min-height:100vh; text-align:center;">
   <div class="glass-card" style="padding:40px; max-width:480px;">

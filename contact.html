@@ -1,315 +1,390 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Start a Project Brief | Veyronix Technology</title>
-  <meta name="description" content="Connect with Veyronix Technology. Submit a project brief for AI automation, intelligent systems, GoHighLevel architecture, or custom software development.">
-  <link rel="canonical" href="https://veyronixtechnologies.vercel.app/contact.html">
-  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Start a Project | Contact Veyronix Technology</title>
+  <meta name="description" content="Submit your project brief to Veyronix Technology: AI Automation, AI Agents, GoHighLevel CRM setups, API Integrations, and Custom Software.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Favicon & Brand Icons -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="48x48" href="assets/brand/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png">
   <link rel="shortcut icon" href="favicon.ico">
   <meta property="og:image" content="assets/brand/og-image.png">
-
+  <meta name="twitter:image" content="assets/brand/og-image.png">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('veyronix-theme');
+        if (saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <script src="data/analytics.js" defer></script>
 </head>
 <body>
 
-  <div class="scroll-progress-line" aria-hidden="true"></div>
-
-  <!-- Sticky Navbar -->
+  <!-- Sticky Header -->
   <header class="site-header">
     <div class="container nav-inner">
-      <a class="brand" href="index.html" aria-label="Veyronix Technology Home">
-        <img src="assets/brand/veyronix-logo-horizontal.png" alt="Veyronix Technology" class="brand-logo" width="210" height="36">
+            <a class="brand" href="index.html" aria-label="Veyronix Technology Home">
+        <img src="assets/brand/veyronix-logo-horizontal.png" alt="Veyronix Technology" class="brand-logo" width="220" height="38">
       </a>
-      <nav class="nav-menu" aria-label="Primary Navigation">
-        <div class="nav-item"><a class="nav-link" href="solutions.html">Solutions</a></div>
-        <div class="nav-item"><a class="nav-link" href="services.html">Services</a></div>
-        <div class="nav-item"><a class="nav-link" href="projects.html">Work</a></div>
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <div class="nav-item">
+          <a class="nav-link" href="solutions.html">Solutions ▼</a>
+          <div class="dropdown-menu dropdown-mega-solutions">
+            <a href="solutions.html#ai-automation" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+              <div><div class="dropdown-title">AI Business Automation</div><div class="dropdown-desc">Connect forms, CRMs & tools into reliable workflows.</div></div>
+            </a>
+            <a href="solutions.html#ai-agents" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg></div>
+              <div><div class="dropdown-title">AI Agents & Chatbots</div><div class="dropdown-desc">Tool-using agents for lead qualification & support.</div></div>
+            </a>
+            <a href="solutions.html#ghl-automation" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+              <div><div class="dropdown-title">GoHighLevel Automation</div><div class="dropdown-desc">CRM architecture, pipelines & follow-up workflows.</div></div>
+            </a>
+            <a href="solutions.html#api-integration" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+              <div><div class="dropdown-title">API & Systems Integration</div><div class="dropdown-desc">Connect SaaS platforms with secure webhooks.</div></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a class="nav-link" href="services.html">Services ▼</a>
+          <div class="dropdown-menu dropdown-mega-services">
+            <a href="services.html#ai-engineering" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/></svg></div>
+              <div><div class="dropdown-title">AI Systems Engineering</div><div class="dropdown-desc">LLM integrations, RAG architecture & computer vision pipelines.</div></div>
+            </a>
+            <a href="services.html#workflow-automation" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+              <div><div class="dropdown-title">Workflow Automation</div><div class="dropdown-desc">n8n, Make, and Zapier orchestration with clear fallback logic.</div></div>
+            </a>
+            <a href="services.html#ghl-implementation" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+              <div><div class="dropdown-title">GoHighLevel Implementation</div><div class="dropdown-desc">Complete GHL sub-account setup, custom fields, pipelines & funnels.</div></div>
+            </a>
+            <a href="services.html#custom-software" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/></svg></div>
+              <div><div class="dropdown-title">Custom Software Development</div><div class="dropdown-desc">Python microservices, scalable backends & event-driven architecture.</div></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-item"><a class="nav-link" href="industries.html">Industries</a></div>
+        <div class="nav-item"><a class="nav-link" href="projects.html">Case Studies</a></div>
+        <div class="nav-item"><a class="nav-link" href="technology.html">Technology</a></div>
         <div class="nav-item"><a class="nav-link" href="about.html">About</a></div>
       </nav>
+
       <div class="nav-actions">
-        <a href="contact.html" class="btn btn-primary btn-sm">Start a Project ↗</a>
-        <button class="mobile-toggle" aria-label="Open Navigation Menu">☰</button>
+        <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">🌙</button>
+        <a class="btn btn-primary btn-sm" href="contact.html">Start a Project ↗</a>
+        <button class="mobile-toggle" aria-label="Open Navigation">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Drawer Overlay -->
+  <!-- Mobile Drawer -->
   <div class="mobile-drawer" aria-hidden="true">
-    <div class="mobile-drawer-header">
-      <a class="brand" href="index.html" aria-label="Veyronix Technology Home">
-        <img src="assets/brand/veyronix-logo-horizontal.png" alt="Veyronix Technology" class="brand-logo" style="max-height:30px;" width="170" height="30">
-      </a>
-      <button class="mobile-drawer-close" aria-label="Close Navigation">✕</button>
+    <div class="mobile-drawer-content">
+            <div class="mobile-drawer-header">
+        <a class="brand" href="index.html" aria-label="Veyronix Technology Home">
+          <img src="assets/brand/veyronix-logo-horizontal.png" alt="Veyronix Technology" class="brand-logo" style="max-height:30px;" width="170" height="30">
+        </a>
+        <button class="mobile-drawer-close" aria-label="Close Navigation">✕</button>
+      </div>
+      <div class="mobile-nav-links">
+        <div class="mobile-nav-item"><a href="solutions.html" class="mobile-nav-link">Solutions</a></div>
+        <div class="mobile-nav-item"><a href="services.html" class="mobile-nav-link">Services</a></div>
+        <div class="mobile-nav-item"><a href="industries.html" class="mobile-nav-link">Industries</a></div>
+        <div class="mobile-nav-item"><a href="projects.html" class="mobile-nav-link">Case Studies</a></div>
+        <div class="mobile-nav-item"><a href="technology.html" class="mobile-nav-link">Technology</a></div>
+        <div class="mobile-nav-item"><a href="about.html" class="mobile-nav-link">About</a></div>
+        <div class="mobile-nav-item"><a href="contact.html" class="mobile-nav-link">Contact</a></div>
+      </div>
+      <div style="margin-top:auto; padding-top:16px;">
+        <a href="contact.html" class="btn btn-primary" style="width:100%">Start a Project ↗</a>
+      </div>
     </div>
-    <ul class="mobile-nav-list">
-      <li class="mobile-nav-item"><a href="solutions.html" class="mobile-nav-link">Solutions</a></li>
-      <li class="mobile-nav-item"><a href="services.html" class="mobile-nav-link">Services</a></li>
-      <li class="mobile-nav-item"><a href="projects.html" class="mobile-nav-link">Work & Case Studies</a></li>
-      <li class="mobile-nav-item"><a href="about.html" class="mobile-nav-link">About Veyronix</a></li>
-      <li class="mobile-nav-item"><a href="contact.html" class="mobile-nav-link" style="color:var(--gold-01);">Contact & Inquiry →</a></li>
-    </ul>
   </div>
 
-  <main id="main-content">
-    
-    <!-- Header -->
-    <section class="section section-tight" style="padding-top:60px;">
-      <div class="container">
-        <div class="eyebrow-pill">START A CONVERSATION</div>
-        <h1 class="headline-hero" style="font-size:clamp(2.5rem, 5vw, 4.2rem);">
-          Tell us what you're <br>
-          <span class="goldtext">trying to build.</span>
-        </h1>
-        <p class="lead">
-          Whether you're automating an operational workflow, implementing GoHighLevel, building custom AI agents, or developing software, share your requirements and we'll help define the right technical approach.
-        </p>
-      </div>
-    </section>
+  <!-- Header -->
+  <section class="section section-soft" style="padding:60px 0 40px;">
+    <div class="container">
+      <div class="eyebrow"><span class="dot"></span> START A CONVERSATION</div>
+      <h1 style="font-size:clamp(2.4rem, 4vw, 3.4rem); margin-bottom:16px;">Tell us what you're <span class="goldtext">trying to build.</span></h1>
+      <p class="lead">
+        Whether you're automating a business process, implementing GoHighLevel, building an AI agent or developing a custom software platform, give us the context and we'll help you define the right technical approach.
+      </p>
+    </div>
+  </section>
 
-    <!-- Contact & Intake Layout -->
-    <section class="section" style="padding-top:10px;">
-      <div class="container contact-layout-grid">
-        
-        <!-- Left: Low-Friction Intake Form -->
-        <div class="glass-card" style="padding:40px;">
-          <h2 style="font-size:1.45rem; margin-bottom:24px; color:var(--text-primary);">Project Scope & Requirements</h2>
-          
-          <form data-project-inquiry-form novalidate>
-            <!-- Anti-Spam Honeypot Field (Invisible to human users) -->
+  <!-- Contact & Project Brief Layout -->
+  <section class="section">
+    <div class="container contact-layout-grid">
+      
+      <!-- Left: Form Container -->
+      <div class="glass-card" style="padding:36px;">
+        <h2 style="font-size:1.45rem; margin-bottom:20px; color:var(--ink-heading);">Project Scope & Requirements</h2>
+        <form data-project-inquiry-form novalidate>
+            <!-- Anti-Spam Honeypot Field -->
             <div style="position:absolute; left:-9999px; opacity:0; pointer-events:none;" aria-hidden="true">
               <input type="text" name="_hp_company_url" id="_hp_company_url" tabindex="-1" autocomplete="off">
             </div>
-
-            <!-- Form Render Timestamp -->
+            <!-- Submission Timestamp -->
             <input type="hidden" name="_t" id="_form_t" value="">
-
-            <div class="form-grid">
-              
-              <!-- First Name -->
-              <div class="form-field">
-                <label for="firstName">First Name *</label>
-                <input type="text" id="firstName" name="firstName" required placeholder="e.g. Alex" autocomplete="given-name">
-              </div>
-
-              <!-- Last Name -->
-              <div class="form-field">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" placeholder="e.g. Morgan" autocomplete="family-name">
-              </div>
-
-              <!-- Work Email -->
-              <div class="form-field">
-                <label for="email">Work Email *</label>
-                <input type="email" id="email" name="email" required placeholder="alex@company.com" autocomplete="email">
-              </div>
-
-              <!-- Company Name -->
-              <div class="form-field">
-                <label for="company">Company / Organization *</label>
-                <input type="text" id="company" name="company" required placeholder="Company Name" autocomplete="organization">
-              </div>
-
-              <!-- Primary Project Scope -->
-              <div class="form-field">
-                <label for="projectType">Primary Project Scope *</label>
-                <select id="projectType" name="projectType" required>
-                  <option value="" disabled selected>Select scope...</option>
-                  <option value="AI Business Automation">AI Workflow Automation (n8n / Make / Python)</option>
-                  <option value="Custom AI Agents">Custom AI Agents & Copilots (RAG / LLMs)</option>
-                  <option value="GoHighLevel (GHL) Engine">GoHighLevel (GHL) CRM Architecture</option>
-                  <option value="CRM & Inbound Lead Routing">CRM & Inbound Lead Routing</option>
-                  <option value="API & Systems Integration">API & Custom Systems Integration</option>
-                  <option value="Web & SaaS Platform Development">Web Application / SaaS Development</option>
-                  <option value="Computer Vision & Edge">AI & Computer Vision Engineering</option>
-                  <option value="Other Scope">Other / Custom Engineering Scope</option>
-                </select>
-              </div>
-
-              <!-- Budget Range -->
-              <div class="form-field">
-                <label for="budget">Estimated Budget Range (USD)</label>
-                <select id="budget" name="budget">
-                  <option value="Under $2.5k">&lt; $2,500</option>
-                  <option value="$2.5k - $5k" selected>$2,500 – $5,000</option>
-                  <option value="$5k - $10k">$5,000 – $10,000</option>
-                  <option value="$10k - $25k">$10,000 – $25,000</option>
-                  <option value="$25k+">$25,000+</option>
-                </select>
-              </div>
-
-              <!-- Project Brief -->
-              <div class="form-field form-full">
-                <label for="description">Project Brief & Core Bottlenecks *</label>
-                <textarea id="description" name="description" required placeholder="Describe what you want to build or automate, current manual friction points, and what success looks like..."></textarea>
-              </div>
-
-              <!-- Optional Technical Details Toggle Accordion -->
-              <div class="form-full">
-                <button type="button" class="accordion-toggle-btn" data-toggle-tech-details>
-                  + Add Technical Details (Timeline, Current Stack, Phone, Timezone)
-                </button>
-              </div>
-
-              <!-- Hidden/Collapsible Technical Details Panel -->
-              <div class="form-full" data-tech-details-panel style="display:none; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:8px; padding-top:16px; border-top:1px solid var(--border-subtle);">
-                
-                <div class="form-field">
-                  <label for="phone">Phone / WhatsApp</label>
-                  <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel">
-                </div>
-
-                <div class="form-field">
-                  <label for="website">Company Website</label>
-                  <input type="url" id="website" name="website" placeholder="https://company.com" autocomplete="url">
-                </div>
-
-                <div class="form-field">
-                  <label for="timeline">Target Timeline</label>
-                  <select id="timeline" name="timeline">
-                    <option value="Immediate (< 2 weeks)">Immediate (&lt; 2 weeks)</option>
-                    <option value="Within 1 Month" selected>Within 1 Month</option>
-                    <option value="2-3 Months">2 – 3 Months</option>
-                    <option value="Exploratory / Flexible">Exploratory / Flexible</option>
-                  </select>
-                </div>
-
-                <div class="form-field">
-                  <label for="country">Country / Timezone</label>
-                  <input type="text" id="country" name="country" placeholder="e.g. United States (EST) / UK (GMT)">
-                </div>
-
-                <div class="form-field form-full">
-                  <label for="currentTools">Current Software Stack / Tools</label>
-                  <input type="text" id="currentTools" name="currentTools" placeholder="e.g. GoHighLevel, HubSpot, n8n, Stripe, PostgreSQL, Slack...">
-                </div>
-
-              </div>
-
-              <!-- Submit Button -->
-              <div class="form-full" style="margin-top:12px;">
-                <button type="submit" class="btn btn-primary" style="width:100%; padding:16px;">
-                  Send Project Brief →
-                </button>
-              </div>
-
+          <div class="form-grid">
+            
+            <!-- First Name -->
+            <div class="form-field">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" name="firstName" required placeholder="e.g. Alex" autocomplete="given-name">
             </div>
 
-            <!-- Real-time Submission Status Notice Container -->
-            <div class="form-notice" style="display:none; margin-top:16px;" role="alert"></div>
-          </form>
-        </div>
+            <!-- Last Name -->
+            <div class="form-field">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" name="lastName" required placeholder="e.g. Morgan" autocomplete="family-name">
+            </div>
 
-        <!-- Right: Direct Engineering Contact Panel -->
-        <div class="contact-info-panel">
-          <div>
-            <div class="eyebrow" style="margin-bottom:8px;"><span class="dot"></span> DIRECT CONTACT</div>
-            <h3 style="font-size:1.35rem; margin-bottom:12px; color:var(--text-primary);">Direct Engineering Line</h3>
-            <p class="lead-muted" style="margin-bottom:20px;">
-              Prefer reaching out directly without completing a full brief? You can contact our team via email or direct phone.
-            </p>
+            <!-- Work Email -->
+            <div class="form-field">
+              <label for="email">Work Email *</label>
+              <input type="email" id="email" name="email" required placeholder="alex@company.com" autocomplete="email">
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-field">
+              <label for="phone">Phone / WhatsApp</label>
+              <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel">
+            </div>
+
+            <!-- Company Name -->
+            <div class="form-field">
+              <label for="company">Company / Organization *</label>
+              <input type="text" id="company" name="company" required placeholder="Company Name" autocomplete="organization">
+            </div>
+
+            <!-- Website -->
+            <div class="form-field">
+              <label for="website">Company Website</label>
+              <input type="url" id="website" name="website" placeholder="https://yourcompany.com" autocomplete="url">
+            </div>
+
+            <!-- Country -->
+            <div class="form-field">
+              <label for="country">Country / Timezone</label>
+              <input type="text" id="country" name="country" placeholder="e.g. United States (EST) / UK (GMT)" autocomplete="country-name">
+            </div>
+
+            <!-- Project Type -->
+            <div class="form-field">
+              <label for="projectType">Primary Project Type *</label>
+              <select id="projectType" name="projectType" required>
+                <option value="" disabled selected>Select project type...</option>
+                <option value="AI Automation">AI Business Automation (n8n / Make / Zapier)</option>
+                <option value="AI Agent">AI Agents & Chatbots (OpenAI / Claude / RAG)</option>
+                <option value="GoHighLevel Automation">GoHighLevel (GHL) CRM & Revenue Automation</option>
+                <option value="CRM Automation">CRM & Inbound Lead Routing</option>
+                <option value="API Integration">API & Custom System Integration</option>
+                <option value="Web/SaaS Development">Web Application / SaaS Development</option>
+                <option value="Mobile Application">Mobile Application Development</option>
+                <option value="Computer Vision / AI">AI & Computer Vision Engineering</option>
+                <option value="Other">Other / Custom Engineering Scope</option>
+              </select>
+            </div>
+
+            <!-- Budget Range -->
+            <div class="form-field">
+              <label for="budget">Estimated Budget Range (USD)</label>
+              <select id="budget" name="budget">
+                <option value="Under $2.5k">&lt; $2,500</option>
+                <option value="$2.5k - $5k" selected>$2,500 – $5,000</option>
+                <option value="$5k - $10k">$5,000 – $10,000</option>
+                <option value="$10k - $25k">$10,000 – $25,000</option>
+                <option value="$25k+">$25,000+</option>
+              </select>
+            </div>
+
+            <!-- Timeline -->
+            <div class="form-field">
+              <label for="timeline">Target Timeline</label>
+              <select id="timeline" name="timeline">
+                <option value="Immediate (< 2 weeks)">Immediate (&lt; 2 weeks)</option>
+                <option value="1 month" selected>Within 1 Month</option>
+                <option value="2-3 months">2 – 3 Months</option>
+                <option value="Flexible">Exploratory / Flexible</option>
+              </select>
+            </div>
+
+            <!-- Current Tools -->
+            <div class="form-field form-full">
+              <label for="currentTools">Current Software Stack / Tools</label>
+              <input type="text" id="currentTools" name="currentTools" placeholder="e.g. GoHighLevel, HubSpot, n8n, Stripe, PostgreSQL, Slack...">
+            </div>
+
+            <!-- Project Description -->
+            <div class="form-field form-full">
+              <label for="description">Project Description & Core Bottlenecks *</label>
+              <textarea id="description" name="description" required placeholder="Describe what you want to build or automate, current manual friction points, and what success looks like..."></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-full" style="margin-top:10px;">
+              <button type="submit" class="btn btn-primary" style="width:100%; padding:16px;">
+                Send Project Brief →
+              </button>
+            </div>
+
           </div>
 
-          <!-- Email Card -->
-          <a href="mailto:veyronixtechnologies@gmail.com" class="contact-channel-card">
-            <div class="contact-channel-icon">✉</div>
-            <div>
-              <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--gold-01); font-weight:700; text-transform:uppercase;">Official Email</div>
-              <div style="font-size:0.90rem; font-weight:700; color:var(--text-primary); word-break:break-all;">veyronixtechnologies@gmail.com</div>
-            </div>
-          </a>
-
-          <!-- Phone Card -->
-          <a href="tel:+923390023451" class="contact-channel-card" aria-label="Call Veyronix Technology at +92 339 0023451">
-            <div class="contact-channel-icon">📞</div>
-            <div>
-              <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--gold-01); font-weight:700; text-transform:uppercase;">Direct Phone</div>
-              <div style="font-size:0.90rem; font-weight:700; color:var(--text-primary);">+92 339 0023451</div>
-            </div>
-          </a>
-
-          <!-- Quick Action Buttons -->
-          <div style="display:flex; gap:10px; margin-top:8px;">
-            <a href="mailto:veyronixtechnologies@gmail.com" class="btn btn-secondary btn-sm" style="flex:1;">Email Us ✉</a>
-            <a href="tel:+923390023451" class="btn btn-outline btn-sm" style="flex:1;">Call Us 📞</a>
-          </div>
-
-          <!-- Primary Project Scope Pills -->
-          <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--border-subtle);">
-            <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:10px;">Primary Capabilities</div>
-            <div style="display:flex; flex-wrap:wrap; gap:6px;">
-              <span class="arch-tag">AI Automation</span>
-              <span class="arch-tag">AI Agents</span>
-              <span class="arch-tag">GoHighLevel</span>
-              <span class="arch-tag">CRM Systems</span>
-              <span class="arch-tag">API Integration</span>
-              <span class="arch-tag">Web & SaaS</span>
-            </div>
-          </div>
-
-        </div>
-
+          <!-- Transparent Notice -->
+          <div class="form-notice" style="display:none;"></div>
+        </form>
       </div>
-    </section>
 
-  </main>
+      <!-- Right: Direct Contact & Scope Panel -->
+      <div class="contact-info-panel">
+        <div>
+          <span class="eyebrow" style="margin-bottom:12px;">DIRECT COMMUNICATION</span>
+          <h3 style="font-size:1.35rem; margin-bottom:16px; color:var(--ink-heading);">Direct Engineering Contact</h3>
+          <p style="font-size:0.86rem; color:var(--muted); line-height:1.6; margin-bottom:20px;">
+            Prefer reaching out directly? You can connect with our team via email or direct call.
+          </p>
+        </div>
 
-  <!-- Dark Luxury Brand Footer -->
+        <!-- Email Channel -->
+        <a href="mailto:veyronixtechnologies@gmail.com" class="contact-channel-card">
+          <div class="contact-channel-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-channel-label">Official Email</div>
+            <div class="contact-channel-value" style="font-size:0.86rem;">veyronixtechnologies@gmail.com</div>
+          </div>
+        </a>
+
+        <!-- Phone Channel -->
+        <a href="tel:+923390023451" class="contact-channel-card" aria-label="Call Veyronix Technology at +92 339 0023451">
+          <div class="contact-channel-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-channel-label">Direct Phone</div>
+            <div class="contact-channel-value">+92 339 0023451</div>
+          </div>
+        </a>
+
+        <!-- Project Capabilities -->
+        <div style="background:var(--surface-glass); padding:20px; border-radius:var(--radius-md); border:1px solid var(--line-subtle);">
+          <div class="capability-label">Primary Project Scopes</div>
+          <div class="contact-scope-pill-grid">
+            <span class="contact-scope-pill">AI Automation</span>
+            <span class="contact-scope-pill">AI Agents</span>
+            <span class="contact-scope-pill">GoHighLevel</span>
+            <span class="contact-scope-pill">CRM Automation</span>
+            <span class="contact-scope-pill">API Integration</span>
+            <span class="contact-scope-pill">Web & SaaS</span>
+            <span class="contact-scope-pill">Custom Software</span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px;">
+          <a href="mailto:veyronixtechnologies@gmail.com" class="btn btn-soft btn-sm" style="flex:1;">Email Us ✉</a>
+          <a href="tel:+923390023451" class="btn btn-outline btn-sm" style="flex:1;">Call Us 📞</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+    <!-- Global Dark Luxury Brand Footer -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand-col">
           <a href="index.html" aria-label="Veyronix Technology Home">
-            <img src="assets/brand/veyronix-logo-full.png" alt="Veyronix Technology" class="footer-logo" width="200" height="200">
+            <img src="assets/brand/veyronix-logo-full.png" alt="Veyronix Technology - Vision, Velocity, Venture" class="footer-logo" width="210" height="210">
           </a>
           <div class="footer-company-name">Veyronix Technology Private Limited</div>
-          <p class="footer-positioning">AI Automation · Intelligent Systems · Software Engineering</p>
-          <div class="footer-tagline-pill"><span>VISION</span> • <span>VELOCITY</span> • <span>VENTURE</span></div>
+          <p class="footer-positioning">
+            AI Automation · Intelligent Systems · Software Engineering
+          </p>
+          <div class="footer-tagline">
+            <span>VISION</span> • <span>VELOCITY</span> • <span>VENTURE</span>
+          </div>
         </div>
+
         <div class="footer-col">
           <h4>Solutions</h4>
           <ul>
             <li><a href="solutions.html#ai-automation">AI Business Automation</a></li>
-            <li><a href="solutions.html#ai-agents">Custom AI Agents</a></li>
+            <li><a href="solutions.html#ai-agents">AI Agents & Chatbots</a></li>
             <li><a href="solutions.html#ghl-automation">GoHighLevel Automation</a></li>
+            <li><a href="solutions.html#crm-lead">CRM & Lead Automation</a></li>
             <li><a href="solutions.html#api-integration">API & Systems Integration</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h4>Services</h4>
           <ul>
             <li><a href="services.html#ai-engineering">AI Systems Engineering</a></li>
             <li><a href="services.html#workflow-automation">Workflow Automation</a></li>
             <li><a href="services.html#ghl-implementation">GoHighLevel Setup</a></li>
-            <li><a href="services.html#custom-software">Custom Software Dev</a></li>
+            <li><a href="services.html#custom-software">Custom Software</a></li>
+            <li><a href="services.html#web-saas">Web & SaaS Development</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
-          <h4>Legal & Company</h4>
+          <h4>Company</h4>
           <ul>
             <li><a href="about.html">About Veyronix</a></li>
-            <li><a href="projects.html">Work & Portfolio</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="projects.html">Case Studies</a></li>
+            <li><a href="case-study-aervion.html">Aervion Study</a></li>
+            <li><a href="technology.html">Technology Stack</a></li>
+            <li><a href="contact.html">Start a Project</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h4>Official Contact</h4>
           <ul>
-            <li><a href="mailto:veyronixtechnologies@gmail.com" style="color:var(--gold-01); font-weight:600; word-break:break-all;">veyronixtechnologies@gmail.com</a></li>
-            <li><a href="tel:+923390023451" style="color:var(--text-primary); font-weight:600;">+92 339 0023451</a></li>
-            <li><a href="contact.html" style="color:var(--gold-01); font-weight:700;">Send Project Brief →</a></li>
+            <li class="footer-contact-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:veyronixtechnologies@gmail.com">veyronixtechnologies@gmail.com</a>
+            </li>
+            <li class="footer-contact-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+923390023451" aria-label="Call Veyronix Technology at +92 339 0023451">+92 339 0023451</a>
+            </li>
+            <li style="margin-top:8px;">
+              <a href="contact.html" style="color:var(--gold-light); font-weight:700;">Send Project Brief →</a>
+            </li>
           </ul>
         </div>
       </div>
+
       <div class="footer-bottom">
         <div>© <span data-year>2026</span> Veyronix Technology Private Limited. All rights reserved.</div>
-        <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-dim);">VISION • VELOCITY • VENTURE</div>
+        <div style="color:#A89F91;">VISION • VELOCITY • VENTURE</div>
       </div>
     </div>
   </footer>

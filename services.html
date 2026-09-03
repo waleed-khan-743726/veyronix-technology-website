@@ -1,213 +1,423 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Engineering Services | Veyronix Technology</title>
-  <meta name="description" content="Engineering services: AI Systems Engineering, Workflow Automation, GoHighLevel Implementation, Custom Software, and API Integration.">
-  <link rel="canonical" href="https://veyronixtechnologies.vercel.app/services.html">
-  
+  <meta name="description" content="Veyronix engineering services: AI Systems Engineering, Workflow Automation, GoHighLevel Implementation, Custom Software, Web & SaaS Development, and API Integration.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Favicon & Brand Icons -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="48x48" href="assets/brand/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png">
   <link rel="shortcut icon" href="favicon.ico">
   <meta property="og:image" content="assets/brand/og-image.png">
-
+  <meta name="twitter:image" content="assets/brand/og-image.png">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('veyronix-theme');
+        if (saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <script src="data/analytics.js" defer></script>
 </head>
 <body>
-
-  <div class="scroll-progress-line" aria-hidden="true"></div>
 
   <!-- Sticky Header -->
   <header class="site-header">
     <div class="container nav-inner">
-      <a class="brand" href="index.html" aria-label="Veyronix Technology Home">
-        <img src="assets/brand/veyronix-logo-horizontal.png" alt="Veyronix Technology" class="brand-logo" width="210" height="36">
+            <a class="brand" href="index.html" aria-label="Veyronix Technology Home">
+        <img src="assets/brand/veyronix-logo-horizontal.png" alt="Veyronix Technology" class="brand-logo" width="220" height="38">
       </a>
 
-      <nav class="nav-menu" aria-label="Primary Navigation">
-        <div class="nav-item"><a class="nav-link" href="solutions.html">Solutions</a></div>
-        <div class="nav-item"><a class="nav-link active" href="services.html">Services</a></div>
-        <div class="nav-item"><a class="nav-link" href="projects.html">Work</a></div>
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <div class="nav-item">
+          <a class="nav-link" href="solutions.html">Solutions ▼</a>
+          <div class="dropdown-menu dropdown-mega-solutions">
+            <a href="solutions.html#ai-automation" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+              <div><div class="dropdown-title">AI Business Automation</div><div class="dropdown-desc">Connect forms, CRMs & tools into reliable workflows.</div></div>
+            </a>
+            <a href="solutions.html#ai-agents" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg></div>
+              <div><div class="dropdown-title">AI Agents & Chatbots</div><div class="dropdown-desc">Tool-using agents for lead qualification & support.</div></div>
+            </a>
+            <a href="solutions.html#ghl-automation" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+              <div><div class="dropdown-title">GoHighLevel Automation</div><div class="dropdown-desc">CRM architecture, pipelines & follow-up workflows.</div></div>
+            </a>
+            <a href="solutions.html#api-integration" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+              <div><div class="dropdown-title">API & Systems Integration</div><div class="dropdown-desc">Connect SaaS platforms with secure webhooks.</div></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a class="nav-link" href="services.html" style="color:var(--caramel);">Services ▼</a>
+          <div class="dropdown-menu dropdown-mega-services">
+            <a href="services.html#ai-engineering" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/></svg></div>
+              <div><div class="dropdown-title">AI Systems Engineering</div><div class="dropdown-desc">LLM integrations, RAG architecture & computer vision pipelines.</div></div>
+            </a>
+            <a href="services.html#workflow-automation" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+              <div><div class="dropdown-title">Workflow Automation</div><div class="dropdown-desc">n8n, Make, and Zapier orchestration with clear fallback logic.</div></div>
+            </a>
+            <a href="services.html#ghl-implementation" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+              <div><div class="dropdown-title">GoHighLevel Implementation</div><div class="dropdown-desc">Complete GHL sub-account setup, custom fields, pipelines & funnels.</div></div>
+            </a>
+            <a href="services.html#custom-software" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/></svg></div>
+              <div><div class="dropdown-title">Custom Software Development</div><div class="dropdown-desc">Python microservices, scalable backends & event-driven architecture.</div></div>
+            </a>
+            <a href="services.html#web-saas" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></div>
+              <div><div class="dropdown-title">Web & SaaS Development</div><div class="dropdown-desc">Modern React and Next.js applications, portals & internal tools.</div></div>
+            </a>
+            <a href="services.html#api-integration" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/></svg></div>
+              <div><div class="dropdown-title">API & System Integration</div><div class="dropdown-desc">Custom middleware, webhook receivers & database synchronization.</div></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-item"><a class="nav-link" href="industries.html">Industries</a></div>
+        <div class="nav-item"><a class="nav-link" href="projects.html">Case Studies</a></div>
+        <div class="nav-item"><a class="nav-link" href="technology.html">Technology</a></div>
         <div class="nav-item"><a class="nav-link" href="about.html">About</a></div>
       </nav>
 
       <div class="nav-actions">
+        <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">🌙</button>
         <a class="btn btn-primary btn-sm" href="contact.html">Start a Project ↗</a>
-        <button class="mobile-toggle" aria-label="Open Navigation">☰</button>
+        <button class="mobile-toggle" aria-label="Open Navigation">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
+  <!-- Mobile Drawer Navigation -->
   <div class="mobile-drawer" aria-hidden="true">
-    <div class="mobile-drawer-header">
-      <a class="brand" href="index.html" aria-label="Veyronix Technology Home">
-        <img src="assets/brand/veyronix-logo-horizontal.png" alt="Veyronix Technology" class="brand-logo" style="max-height:30px;" width="170" height="30">
-      </a>
-      <button class="mobile-drawer-close" aria-label="Close Navigation">✕</button>
+    <div class="mobile-drawer-content">
+            <div class="mobile-drawer-header">
+        <a class="brand" href="index.html" aria-label="Veyronix Technology Home">
+          <img src="assets/brand/veyronix-logo-horizontal.png" alt="Veyronix Technology" class="brand-logo" style="max-height:30px;" width="170" height="30">
+        </a>
+        <button class="mobile-drawer-close" aria-label="Close Navigation">✕</button>
+      </div>
+      <div class="mobile-nav-links">
+        <div class="mobile-nav-item"><a href="solutions.html" class="mobile-nav-link">Solutions</a></div>
+        <div class="mobile-nav-item">
+          <a href="#" class="mobile-nav-link mobile-dropdown-toggle">Services <span class="mobile-arrow">▼</span></a>
+          <div class="mobile-submenu open">
+            <a href="services.html#ai-engineering">AI Systems Engineering</a>
+            <a href="services.html#workflow-automation">Workflow Automation</a>
+            <a href="services.html#ghl-implementation">GoHighLevel Implementation</a>
+            <a href="services.html#custom-software">Custom Software Development</a>
+            <a href="services.html#web-saas">Web & SaaS Development</a>
+            <a href="services.html#api-integration">API Integration</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item"><a href="industries.html" class="mobile-nav-link">Industries</a></div>
+        <div class="mobile-nav-item"><a href="projects.html" class="mobile-nav-link">Case Studies</a></div>
+        <div class="mobile-nav-item"><a href="technology.html" class="mobile-nav-link">Technology</a></div>
+        <div class="mobile-nav-item"><a href="about.html" class="mobile-nav-link">About</a></div>
+        <div class="mobile-nav-item"><a href="contact.html" class="mobile-nav-link">Contact</a></div>
+      </div>
+      <div style="margin-top:auto; padding-top:16px;">
+        <a href="contact.html" class="btn btn-primary" style="width:100%">Start a Project ↗</a>
+      </div>
     </div>
-    <ul class="mobile-nav-list">
-      <li class="mobile-nav-item"><a href="solutions.html" class="mobile-nav-link">Solutions</a></li>
-      <li class="mobile-nav-item"><a href="services.html" class="mobile-nav-link" style="color:var(--gold-01);">Services</a></li>
-      <li class="mobile-nav-item"><a href="projects.html" class="mobile-nav-link">Work & Case Studies</a></li>
-      <li class="mobile-nav-item"><a href="about.html" class="mobile-nav-link">About Veyronix</a></li>
-      <li class="mobile-nav-item"><a href="contact.html" class="mobile-nav-link">Contact & Inquiry →</a></li>
-    </ul>
   </div>
 
-  <main id="main-content">
-    
-    <!-- Page Header -->
-    <section class="section section-tight" style="padding-top:60px;">
-      <div class="container">
-        <div class="eyebrow-pill">TECHNICAL CAPABILITIES</div>
-        <h1 class="headline-hero" style="font-size:clamp(2.5rem, 5vw, 4.4rem);">
-          Engineering Services <br>
-          <span class="goldtext">Built for Production Scale.</span>
-        </h1>
-        <p class="lead">
-          From full-stack custom software and AI systems to enterprise workflow orchestration and GoHighLevel CRM implementations.
-        </p>
-      </div>
-    </section>
+  <!-- Page Header -->
+  <section class="section section-soft" style="padding:60px 0 40px;">
+    <div class="container">
+      <div class="eyebrow"><span class="dot"></span> ENGINEERING PRACTICES</div>
+      <h1 style="font-size:clamp(2.4rem, 4vw, 3.4rem); margin-bottom:16px;">Software & Systems <span class="goldtext">Engineering Services.</span></h1>
+      <p class="lead">
+        We partner with companies to design, engineer, and deploy reliable software systems, custom automation pipelines, and intelligent AI applications.
+      </p>
+    </div>
+  </section>
 
-    <!-- Services Grid -->
-    <section class="section" style="padding-top:10px;">
-      <div class="container grid-2" style="align-items:stretch;">
+  <!-- Services Grid -->
+  <section class="section">
+    <div class="container" style="display:grid; gap:48px;">
 
-        <!-- 1. AI Systems Engineering -->
-        <div class="glass-card" id="ai-engineering">
-          <div class="eyebrow"><span class="dot"></span> 01 // AI SYSTEMS</div>
-          <h2 style="font-size:1.45rem; margin:8px 0 12px;">AI Systems Engineering</h2>
-          <p class="lead-muted" style="margin-bottom:18px;">
-            End-to-end design and deployment of large language model integrations, RAG vector pipelines, autonomous agent architectures, and embedded computer vision.
-          </p>
-          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--gold-01); font-weight:700; margin-bottom:8px;">// DELIVERABLES</div>
-          <ul style="display:grid; gap:6px; font-size:0.84rem; color:var(--text-secondary); line-height:1.5;">
-            <li>• Production RAG pipelines with Pinecone/pgvector</li>
-            <li>• Multi-agent state machines & tool calling</li>
-            <li>• Real-time computer vision inference & tracking</li>
-            <li>• LLM cost optimization & token streaming</li>
-          </ul>
-        </div>
-
-        <!-- 2. Workflow Automation -->
-        <div class="glass-card" id="workflow-automation">
-          <div class="eyebrow"><span class="dot"></span> 02 // WORKFLOW ENGINES</div>
-          <h2 style="font-size:1.45rem; margin:8px 0 12px;">Workflow Automation</h2>
-          <p class="lead-muted" style="margin-bottom:18px;">
-            Design, deployment, and management of mission-critical business automation pipelines using self-hosted n8n, Make, and custom Python microservices.
-          </p>
-          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--gold-01); font-weight:700; margin-bottom:8px;">// DELIVERABLES</div>
-          <ul style="display:grid; gap:6px; font-size:0.84rem; color:var(--text-secondary); line-height:1.5;">
-            <li>• Resilient n8n / Make workflow orchestrations</li>
-            <li>• Webhook payload validation & retry mechanisms</li>
-            <li>• Bi-directional CRM & financial database synchronization</li>
-            <li>• Automated alerting via Slack, Discord, and email</li>
-          </ul>
-        </div>
-
-        <!-- 3. GoHighLevel Setup -->
-        <div class="glass-card" id="ghl-implementation">
-          <div class="eyebrow"><span class="dot"></span> 03 // GHL ARCHITECTURE</div>
-          <h2 style="font-size:1.45rem; margin:8px 0 12px;">GoHighLevel (GHL) Implementation</h2>
-          <p class="lead-muted" style="margin-bottom:18px;">
-            Complete GoHighLevel architecture including custom snapshots, complex multi-branch pipelines, SMS/email funnels, and automated appointment booking.
-          </p>
-          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--gold-01); font-weight:700; margin-bottom:8px;">// DELIVERABLES</div>
-          <ul style="display:grid; gap:6px; font-size:0.84rem; color:var(--text-secondary); line-height:1.5;">
-            <li>• Custom GHL snapshot creation & onboarding</li>
-            <li>• Smart list triggers & tag-based branching</li>
-            <li>• Automated calendar routing & calendar booking funnels</li>
-            <li>• Integration with third-party software via API/webhooks</li>
-          </ul>
-        </div>
-
-        <!-- 4. Custom Software & Web -->
-        <div class="glass-card" id="custom-software">
-          <div class="eyebrow"><span class="dot"></span> 04 // SOFTWARE DEV</div>
-          <h2 style="font-size:1.45rem; margin:8px 0 12px;">Custom Software & Web Platforms</h2>
-          <p class="lead-muted" style="margin-bottom:18px;">
-            Full-stack engineering for internal operational tools, B2B SaaS platforms, high-performance customer portals, and custom API middleware.
-          </p>
-          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--gold-01); font-weight:700; margin-bottom:8px;">// DELIVERABLES</div>
-          <ul style="display:grid; gap:6px; font-size:0.84rem; color:var(--text-secondary); line-height:1.5;">
-            <li>• Clean React / Next.js frontend interfaces</li>
-            <li>• FastAPI / Node.js backend microservices</li>
-            <li>• PostgreSQL & Redis data architecture</li>
-            <li>• Secure deployment on Vercel, AWS, and Cloudflare</li>
-          </ul>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Bottom CTA -->
-    <section class="section" style="padding-top:20px;">
-      <div class="container">
-        <div class="glass-card" style="text-align:center; padding:50px 36px; border-color:var(--gold-border);">
-          <h2 style="font-size:1.8rem; margin-bottom:12px;">Discuss Your Technical Scope</h2>
-          <p class="lead" style="margin:0 auto 24px;">Our engineering team is ready to evaluate your requirements and architect a production-grade solution.</p>
-          <a href="contact.html" class="btn btn-primary">Submit a Project Brief ↗</a>
+      <!-- 1. AI Systems Engineering -->
+      <div class="glass-card" id="ai-engineering">
+        <span class="eyebrow">APPLIED AI ENGINEERING</span>
+        <h2 style="font-size:1.85rem; margin:10px 0 14px;">1. AI Systems Engineering</h2>
+        <div class="grid-2" style="margin-top:20px;">
+          <div>
+            <h4 style="font-size:0.95rem; color:#B45309; margin-bottom:8px;">Problem Solved:</h4>
+            <p style="font-size:0.90rem; color:var(--muted); line-height:1.65; margin-bottom:16px;">
+              Businesses want to harness LLMs and AI vision but struggle with hallucinations, unpredictable outputs, and integrating AI into existing software stacks.
+            </p>
+            <h4 style="font-size:0.95rem; color:var(--ink-heading); margin-bottom:8px;">What We Build:</h4>
+            <p style="font-size:0.90rem; color:var(--muted); line-height:1.65;">
+              We architect production AI systems: deterministic prompt pipelines with JSON schema validation, Retrieval-Augmented Generation (RAG) over private vector databases, tool-using agents, and edge computer vision inference.
+            </p>
+          </div>
+          <div style="background:var(--surface-elevated); padding:20px; border-radius:var(--radius-md); border:1px solid var(--line-subtle);">
+            <div class="capability-label">Typical Deliverables</div>
+            <ul style="font-size:0.84rem; color:var(--ink-secondary); display:grid; gap:6px; margin:8px 0 16px;">
+              <li>• RAG knowledge retrieval backend with pgvector</li>
+              <li>• LLM tool-calling endpoints with fallback logic</li>
+              <li>• Applied computer vision pipelines (OpenCV)</li>
+              <li>• Automated prompt evaluation & guardrail testing</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline btn-sm">Discuss AI Engineering →</a>
+          </div>
         </div>
       </div>
-    </section>
 
-  </main>
+      <!-- 2. Workflow Automation -->
+      <div class="glass-card" id="workflow-automation">
+        <span class="eyebrow">AUTOMATION ARCHITECTURE</span>
+        <h2 style="font-size:1.85rem; margin:10px 0 14px;">2. Workflow Automation Services</h2>
+        <div class="grid-2" style="margin-top:20px;">
+          <div>
+            <h4 style="font-size:0.95rem; color:#B45309; margin-bottom:8px;">Problem Solved:</h4>
+            <p style="font-size:0.90rem; color:var(--muted); line-height:1.65; margin-bottom:16px;">
+              Fragmented operations where team members manually pass spreadsheets, invoices, and lead details back and forth across multiple platforms.
+            </p>
+            <h4 style="font-size:0.95rem; color:var(--ink-heading); margin-bottom:8px;">What We Build:</h4>
+            <p style="font-size:0.90rem; color:var(--muted); line-height:1.65;">
+              Robust automation flows in n8n (self-hosted or cloud), Make, and Zapier. We write custom JavaScript and Python nodes for complex data transformation, handle rate limits gracefully, and set up error alerts.
+            </p>
+          </div>
+          <div style="background:var(--surface-elevated); padding:20px; border-radius:var(--radius-md); border:1px solid var(--line-subtle);">
+            <div class="capability-label">Typical Deliverables</div>
+            <ul style="font-size:0.84rem; color:var(--ink-secondary); display:grid; gap:6px; margin:8px 0 16px;">
+              <li>• Multi-step n8n / Make workflow blueprints</li>
+              <li>• Automated webhook event receivers & payload parsers</li>
+              <li>• Data transformation & normalization scripts</li>
+              <li>• Error monitoring & Slack alerting hooks</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline btn-sm">Discuss Workflow Automation →</a>
+          </div>
+        </div>
+      </div>
 
-  <!-- Dark Luxury Brand Footer -->
+      <!-- 3. GoHighLevel Implementation -->
+      <div class="glass-card" id="ghl-implementation" style="border-color:var(--gold);">
+        <span class="eyebrow">GOHIGHLEVEL CRM SPECIALIZATION</span>
+        <h2 style="font-size:1.85rem; margin:10px 0 14px;">3. GoHighLevel (GHL) Implementation</h2>
+        <div class="grid-2" style="margin-top:20px;">
+          <div>
+            <h4 style="font-size:0.95rem; color:#B45309; margin-bottom:8px;">Problem Solved:</h4>
+            <p style="font-size:0.90rem; color:var(--muted); line-height:1.65; margin-bottom:16px;">
+              High-churn agency clients or internal sales teams struggling with poorly configured GoHighLevel accounts that create pipeline chaos rather than clarity.
+            </p>
+            <h4 style="font-size:0.95rem; color:var(--ink-heading); margin-bottom:8px;">What We Build:</h4>
+            <p style="font-size:0.90rem; color:var(--muted); line-height:1.65;">
+              Complete GHL architecture from scratch: custom field schemas, multi-stage pipelines, automated booking calendars, SMS/email nurture sequences, webhook bridges to external databases, and AI lead qualification.
+            </p>
+          </div>
+          <div style="background:var(--surface-elevated); padding:20px; border-radius:var(--radius-md); border:1px solid var(--line-subtle);">
+            <div class="capability-label">Typical Deliverables</div>
+            <ul style="font-size:0.84rem; color:var(--ink-secondary); display:grid; gap:6px; margin:8px 0 16px;">
+              <li>• Clean pipeline stage mapping & opportunity tracking</li>
+              <li>• Automated SMS / Email follow-up campaigns</li>
+              <li>• Custom form & booking funnel integration</li>
+              <li>• GHL API / Webhook integration with n8n & Python</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary btn-sm">Configure GoHighLevel →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Custom Software Development -->
+      <div class="glass-card" id="custom-software">
+        <span class="eyebrow">BACKEND & SOFTWARE ENGINEERING</span>
+        <h2 style="font-size:1.85rem; margin:10px 0 14px;">4. Custom Software Development</h2>
+        <div class="grid-2" style="margin-top:20px;">
+          <div>
+            <h4 style="font-size:0.95rem; color:#B45309; margin-bottom:8px;">Problem Solved:</h4>
+            <p style="font-size:0.90rem; color:var(--muted); line-height:1.65; margin-bottom:16px;">
+              No-code tools hitting performance walls or lacking the exact business logic, database structure, and security controls needed for serious operations.
+            </p>
+            <h4 style="font-size:0.95rem; color:var(--ink-heading); margin-bottom:8px;">What We Build:</h4>
+            <p style="font-size:0.90rem; color:var(--muted); line-height:1.65;">
+              Clean Python and FastAPI backends, asynchronous worker queues, custom microservices, relational PostgreSQL architectures, and REST/GraphQL APIs engineered for long-term maintainability.
+            </p>
+          </div>
+          <div style="background:var(--surface-elevated); padding:20px; border-radius:var(--radius-md); border:1px solid var(--line-subtle);">
+            <div class="capability-label">Typical Deliverables</div>
+            <ul style="font-size:0.84rem; color:var(--ink-secondary); display:grid; gap:6px; margin:8px 0 16px;">
+              <li>• Python / FastAPI microservices with Swagger documentation</li>
+              <li>• PostgreSQL database schema design & migrations</li>
+              <li>• Asynchronous background task workers (Celery/Redis)</li>
+              <li>• Dockerized deployment configuration</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline btn-sm">Discuss Custom Software →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Web & SaaS Development -->
+      <div class="glass-card" id="web-saas">
+        <span class="eyebrow">FRONTEND & WEB APPLICATIONS</span>
+        <h2 style="font-size:1.85rem; margin:10px 0 14px;">5. Web & SaaS Development</h2>
+        <div class="grid-2" style="margin-top:20px;">
+          <div>
+            <h4 style="font-size:0.95rem; color:#B45309; margin-bottom:8px;">Problem Solved:</h4>
+            <p style="font-size:0.90rem; color:var(--muted); line-height:1.65; margin-bottom:16px;">
+              Outdated, clunky web applications and internal tools that slow down team productivity and provide poor customer experiences.
+            </p>
+            <h4 style="font-size:0.95rem; color:var(--ink-heading); margin-bottom:8px;">What We Build:</h4>
+            <p style="font-size:0.90rem; color:var(--muted); line-height:1.65;">
+              Modern, fast web applications and administrative dashboards using React, Next.js, and TypeScript. Responsive, accessible, and integrated cleanly with your backend APIs.
+            </p>
+          </div>
+          <div style="background:var(--surface-elevated); padding:20px; border-radius:var(--radius-md); border:1px solid var(--line-subtle);">
+            <div class="capability-label">Typical Deliverables</div>
+            <ul style="font-size:0.84rem; color:var(--ink-secondary); display:grid; gap:6px; margin:8px 0 16px;">
+              <li>• Next.js / React client portals and dashboards</li>
+              <li>• Interactive data visualizations & management tables</li>
+              <li>• Responsive mobile-first UI with dark/light themes</li>
+              <li>• Role-based authentication & permissions</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline btn-sm">Discuss Web Applications →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Product Engineering & MVP Development -->
+      <div class="glass-card" id="mvp-development">
+        <span class="eyebrow">RAPID PROTOTYPING & MVPS</span>
+        <h2 style="font-size:1.85rem; margin:10px 0 14px;">6. Product Engineering & MVP Development</h2>
+        <div class="grid-2" style="margin-top:20px;">
+          <div>
+            <h4 style="font-size:0.95rem; color:#B45309; margin-bottom:8px;">Problem Solved:</h4>
+            <p style="font-size:0.90rem; color:var(--muted); line-height:1.65; margin-bottom:16px;">
+              Founders and innovation teams needing to validate software concepts quickly without getting bogged down in 9-month development cycles.
+            </p>
+            <h4 style="font-size:0.95rem; color:var(--ink-heading); margin-bottom:8px;">What We Build:</h4>
+            <p style="font-size:0.90rem; color:var(--muted); line-height:1.65;">
+              Fast, focused MVPs built with clean architecture so they can scale into full production products. We combine no-code/low-code where speed matters with custom code where differentiation lies.
+            </p>
+          </div>
+          <div style="background:var(--surface-elevated); padding:20px; border-radius:var(--radius-md); border:1px solid var(--line-subtle);">
+            <div class="capability-label">Typical Deliverables</div>
+            <ul style="font-size:0.84rem; color:var(--ink-secondary); display:grid; gap:6px; margin:8px 0 16px;">
+              <li>• Scoped technical architecture specification</li>
+              <li>• Functional MVP web app with database & auth</li>
+              <li>• Core automation & notification workflows</li>
+              <li>• Production deployment & codebase handover</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline btn-sm">Build Your MVP →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="cta-banner">
+        <div>
+          <span class="eyebrow">HAVE A SPECIFIC ENGINEERING REQUIREMENT?</span>
+          <h2 style="font-size:2.2rem; margin:10px 0 12px;">Let's discuss your project scope and timelines.</h2>
+          <p class="lead" style="font-size:1.02rem;">
+            Send us your requirements, tools, and goals. We'll provide honest technical feedback and a clear implementation roadmap.
+          </p>
+        </div>
+        <div>
+          <a class="btn btn-primary" href="contact.html">Start a Project →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+    <!-- Global Dark Luxury Brand Footer -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand-col">
           <a href="index.html" aria-label="Veyronix Technology Home">
-            <img src="assets/brand/veyronix-logo-full.png" alt="Veyronix Technology" class="footer-logo" width="200" height="200">
+            <img src="assets/brand/veyronix-logo-full.png" alt="Veyronix Technology - Vision, Velocity, Venture" class="footer-logo" width="210" height="210">
           </a>
           <div class="footer-company-name">Veyronix Technology Private Limited</div>
-          <p class="footer-positioning">AI Automation · Intelligent Systems · Software Engineering</p>
-          <div class="footer-tagline-pill"><span>VISION</span> • <span>VELOCITY</span> • <span>VENTURE</span></div>
+          <p class="footer-positioning">
+            AI Automation · Intelligent Systems · Software Engineering
+          </p>
+          <div class="footer-tagline">
+            <span>VISION</span> • <span>VELOCITY</span> • <span>VENTURE</span>
+          </div>
         </div>
+
         <div class="footer-col">
           <h4>Solutions</h4>
           <ul>
             <li><a href="solutions.html#ai-automation">AI Business Automation</a></li>
-            <li><a href="solutions.html#ai-agents">Custom AI Agents</a></li>
+            <li><a href="solutions.html#ai-agents">AI Agents & Chatbots</a></li>
             <li><a href="solutions.html#ghl-automation">GoHighLevel Automation</a></li>
+            <li><a href="solutions.html#crm-lead">CRM & Lead Automation</a></li>
             <li><a href="solutions.html#api-integration">API & Systems Integration</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h4>Services</h4>
           <ul>
             <li><a href="services.html#ai-engineering">AI Systems Engineering</a></li>
             <li><a href="services.html#workflow-automation">Workflow Automation</a></li>
             <li><a href="services.html#ghl-implementation">GoHighLevel Setup</a></li>
-            <li><a href="services.html#custom-software">Custom Software Dev</a></li>
+            <li><a href="services.html#custom-software">Custom Software</a></li>
+            <li><a href="services.html#web-saas">Web & SaaS Development</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h4>Company</h4>
           <ul>
             <li><a href="about.html">About Veyronix</a></li>
-            <li><a href="projects.html">Work & Portfolio</a></li>
-            <li><a href="case-study-aervion.html">Aervion Drone Study</a></li>
+            <li><a href="projects.html">Case Studies</a></li>
+            <li><a href="case-study-aervion.html">Aervion Study</a></li>
+            <li><a href="technology.html">Technology Stack</a></li>
             <li><a href="contact.html">Start a Project</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h4>Official Contact</h4>
           <ul>
-            <li><a href="mailto:veyronixtechnologies@gmail.com" style="color:var(--gold-01); font-weight:600; word-break:break-all;">veyronixtechnologies@gmail.com</a></li>
-            <li><a href="tel:+923390023451" style="color:var(--text-primary); font-weight:600;">+92 339 0023451</a></li>
-            <li><a href="contact.html" style="color:var(--gold-01); font-weight:700;">Send Project Brief →</a></li>
+            <li class="footer-contact-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:veyronixtechnologies@gmail.com">veyronixtechnologies@gmail.com</a>
+            </li>
+            <li class="footer-contact-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+923390023451" aria-label="Call Veyronix Technology at +92 339 0023451">+92 339 0023451</a>
+            </li>
+            <li style="margin-top:8px;">
+              <a href="contact.html" style="color:var(--gold-light); font-weight:700;">Send Project Brief →</a>
+            </li>
           </ul>
         </div>
       </div>
+
       <div class="footer-bottom">
         <div>© <span data-year>2026</span> Veyronix Technology Private Limited. All rights reserved.</div>
-        <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-dim);">VISION • VELOCITY • VENTURE</div>
+        <div style="color:#A89F91;">VISION • VELOCITY • VENTURE</div>
       </div>
     </div>
   </footer>
