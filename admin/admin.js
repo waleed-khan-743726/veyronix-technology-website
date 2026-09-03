@@ -1,34 +1,14 @@
 /**
  * Veyronix Admin Dashboard Client Engine
- * Features: Firebase Authentication, Token-Authenticated API Requests, Leads Table & Modal
+ * Features: Secure Serverless Session Authentication, Leads CRM Table, Status/Priority Updates, CSV Export
  */
 
 (function () {
   'use strict';
 
-  // 1. Firebase Client Configuration
-  // Note: These public identifiers are safe to be client-side as Firebase security is enforced via Firebase Auth rules and Server-side Token Verification.
-  const firebaseConfig = {
-    apiKey: window.FIREBASE_API_KEY || "AIzaSyMockKeyForVeyronixClientAdmin",
-    authDomain: window.FIREBASE_AUTH_DOMAIN || "veyronix-technologies.firebaseapp.com",
-    projectId: window.FIREBASE_PROJECT_ID || "veyronix-technologies"
-  };
-
-  let authInstance = null;
-  let currentToken = null;
+  let currentToken = sessionStorage.getItem('veyronix_admin_token') || null;
   let allLeads = [];
   let currentSelectedLead = null;
-
-  try {
-    if (typeof firebase !== 'undefined') {
-      if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-      }
-      authInstance = firebase.auth();
-    }
-  } catch (e) {
-    console.warn('[Firebase Auth] Init error:', e.message);
-  }
 
   // DOM Elements
   const loginSection = document.getElementById('loginSection');
@@ -59,27 +39,31 @@
   const kpiWeekLeads = document.getElementById('kpiWeekLeads');
   const kpiConversionRate = document.getElementById('kpiConversionRate');
 
-  // 2. Auth State Observer
-  if (authInstance) {
-    authInstance.onAuthStateChanged(async (user) => {
-      if (user) {
-        try {
-          currentToken = await user.getIdToken();
-          if (currentUserEmail) currentUserEmail.textContent = user.email;
+  // 1. Check existing session on load
+  initSessionCheck();
+
+  async function initSessionCheck() {
+    if (currentToken) {
+      try {
+        const res = await fetch('/api/admin/auth-check', {
+          headers: {
+            'Authorization': `Bearer ${currentToken}`
+          }
+        });
+
+        if (res.ok) {
+          const userEmail = sessionStorage.getItem('veyronix_admin_email') || 'veyronixtechnologies@gmail.com';
+          if (currentUserEmail) currentUserEmail.textContent = userEmail;
           showDashboard();
           loadLeads();
           loadAnalytics();
-        } catch (err) {
-          console.error('[Auth Token Error]', err);
-          showLogin();
+          return;
         }
-      } else {
-        showLogin();
+      } catch (err) {
+        console.warn('[Session Verify Error]', err);
       }
-    });
-  } else {
-    // If Firebase SDK is blocked or offline in dev, provide dev login bypass for local testing
-    console.log('[Admin Auth] Running in standalone local inspection mode');
+    }
+    showLogin();
   }
 
   function showDashboard() {
@@ -89,11 +73,13 @@
 
   function showLogin() {
     currentToken = null;
+    sessionStorage.removeItem('veyronix_admin_token');
+    sessionStorage.removeItem('veyronix_admin_email');
     if (loginSection) loginSection.style.display = 'grid';
     if (dashboardSection) dashboardSection.style.display = 'none';
   }
 
-  // 3. Login Form Submit
+  // 2. Login Form Submit Handler
   if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -113,21 +99,39 @@
       }
 
       try {
-        if (authInstance) {
-          await authInstance.signInWithEmailAndPassword(email, password);
-        } else {
-          // Local fallback token for dev verification
-          currentToken = 'local-dev-mock-admin-token';
-          if (currentUserEmail) currentUserEmail.textContent = email;
+        const response = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success && result.token) {
+          currentToken = result.token;
+          sessionStorage.setItem('veyronix_admin_token', currentToken);
+          sessionStorage.setItem('veyronix_admin_email', result.user?.email || email);
+
+          if (currentUserEmail) currentUserEmail.textContent = result.user?.email || email;
           showDashboard();
           loadLeads();
           loadAnalytics();
+        } else {
+          if (loginNotice) {
+            loginNotice.className = 'login-notice error';
+            loginNotice.textContent = result.message || 'Invalid credentials or unauthorized administrator account.';
+            loginNotice.style.display = 'block';
+          }
         }
       } catch (authError) {
-        console.warn('[Login Failed]', authError.code);
+        console.error('[Admin Login Error]', authError);
         if (loginNotice) {
           loginNotice.className = 'login-notice error';
-          loginNotice.textContent = 'Invalid credentials or unauthorized administrator account.';
+          loginNotice.textContent = 'Network error during login. Please check connection.';
+          loginNotice.style.display = 'block';
         }
       } finally {
         if (loginSubmitBtn) {
@@ -138,18 +142,14 @@
     });
   }
 
-  // 4. Logout Action
+  // 3. Logout Handler
   if (logoutBtn) {
-    logoutBtn.addEventListener('click', async () => {
-      if (authInstance) {
-        await authInstance.signOut();
-      } else {
-        showLogin();
-      }
+    logoutBtn.addEventListener('click', () => {
+      showLogin();
     });
   }
 
-  // 5. Fetch Leads from API
+  // 4. Fetch Leads from CRM API
   async function loadLeads() {
     if (!leadsTableBody) return;
 
@@ -162,10 +162,10 @@
     `;
 
     try {
-      const headers = { 'Accept': 'application/json' };
-      if (currentToken) {
-        headers['Authorization'] = `Bearer ${currentToken}`;
-      }
+      const headers = {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${currentToken}`
+      };
 
       const res = await fetch('/api/admin/leads', { headers });
       const data = await res.json();
@@ -177,7 +177,7 @@
         leadsTableBody.innerHTML = `
           <tr>
             <td colspan="9" style="text-align:center; padding:32px; color:#FCA5A5;">
-              Failed to load leads: ${data.message || 'Unauthorized access.'}
+              ${data.message || 'Unable to load leads.'}
             </td>
           </tr>
         `;
@@ -194,13 +194,13 @@
     }
   }
 
-  // 6. Fetch Analytics Telemetry
+  // 5. Fetch Analytics Telemetry
   async function loadAnalytics() {
     try {
-      const headers = { 'Accept': 'application/json' };
-      if (currentToken) {
-        headers['Authorization'] = `Bearer ${currentToken}`;
-      }
+      const headers = {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${currentToken}`
+      };
 
       const res = await fetch('/api/admin/analytics', { headers });
       const data = await res.json();
@@ -216,7 +216,7 @@
     }
   }
 
-  // 7. Render Leads Table with Client-Side Filtering
+  // 6. Render Leads Table with Client-Side Filtering
   function renderLeadsTable() {
     if (!leadsTableBody) return;
 
@@ -291,7 +291,7 @@
     });
   }
 
-  // 8. Lead Detail Modal Logic
+  // 7. Lead Detail Modal Logic
   function openLeadModal(lead) {
     currentSelectedLead = lead;
     if (!leadModal) return;
@@ -324,7 +324,7 @@
   if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeLeadModal);
   if (modalCancelBtn) modalCancelBtn.addEventListener('click', closeLeadModal);
 
-  // 9. Update Lead Status & Notes
+  // 8. Update Lead Status & Notes
   if (leadUpdateForm) {
     leadUpdateForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -343,11 +343,9 @@
       try {
         const headers = {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${currentToken}`
         };
-        if (currentToken) {
-          headers['Authorization'] = `Bearer ${currentToken}`;
-        }
 
         const res = await fetch('/api/admin/leads', {
           method: 'PATCH',
@@ -358,7 +356,6 @@
         const result = await res.json();
 
         if (res.ok && result.success) {
-          // Update in local memory
           currentSelectedLead['Status'] = status;
           currentSelectedLead['Priority'] = priority;
           currentSelectedLead['Admin Notes'] = adminNotes;
@@ -380,20 +377,19 @@
     });
   }
 
-  // 10. Filter & Search Event Listeners
+  // 9. Filter & Search Event Listeners
   if (leadSearchInput) leadSearchInput.addEventListener('input', renderLeadsTable);
   if (statusFilter) statusFilter.addEventListener('change', renderLeadsTable);
   if (priorityFilter) priorityFilter.addEventListener('change', renderLeadsTable);
   if (refreshLeadsBtn) refreshLeadsBtn.addEventListener('click', () => { loadLeads(); loadAnalytics(); });
 
-  // 11. CSV Export Handler
+  // 10. CSV Export Handler
   if (exportCsvBtn) {
     exportCsvBtn.addEventListener('click', async () => {
       try {
-        const headers = {};
-        if (currentToken) {
-          headers['Authorization'] = `Bearer ${currentToken}`;
-        }
+        const headers = {
+          'Authorization': `Bearer ${currentToken}`
+        };
         const res = await fetch('/api/admin/export', { headers });
         if (res.ok) {
           const blob = await res.blob();

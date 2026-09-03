@@ -190,6 +190,44 @@ async function runTests() {
     assert(res.statusCode === 401, 'Unauthenticated /api/admin/analytics returns HTTP 401');
   }
 
+  // 5d. POST /api/admin/login with Valid Credentials
+  {
+    const { req, res } = createMockReqRes({
+      method: 'POST',
+      body: {
+        email: 'veyronixtechnologies@gmail.com',
+        password: 'Veyronix987654321#'
+      }
+    });
+    const loginHandler = (await import('./api/admin/login.js')).default;
+    await loginHandler(req, res);
+    assert(res.statusCode === 200, 'Valid admin credentials return HTTP 200');
+    assert(res.data && res.data.success === true && typeof res.data.token === 'string', 'Returns valid signed session token');
+
+    // Test authenticated request with the generated token
+    const token = res.data.token;
+    const authReq = createMockReqRes({
+      method: 'GET',
+      headers: { 'authorization': `Bearer ${token}` }
+    });
+    await authCheckHandler(authReq.req, authReq.res);
+    assert(authReq.res.statusCode === 200, 'Session token passes /api/admin/auth-check');
+  }
+
+  // 5e. POST /api/admin/login with Invalid Password
+  {
+    const { req, res } = createMockReqRes({
+      method: 'POST',
+      body: {
+        email: 'veyronixtechnologies@gmail.com',
+        password: 'WrongPassword123!'
+      }
+    });
+    const loginHandler = (await import('./api/admin/login.js')).default;
+    await loginHandler(req, res);
+    assert(res.statusCode === 401, 'Invalid password returns HTTP 401');
+  }
+
   // Final Summary
   console.log('\n======================================================');
   console.log(`TEST RESULTS: ${passed} PASSED, ${failed} FAILED`);
