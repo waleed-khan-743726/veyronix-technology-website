@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aervion Case Study | Smart Aerial Navigation System | Veyronix</title>
+  <meta name="description" content="Technical case study: Aervion AI-powered autonomous drone navigation and target tracking system with decoupled asynchronous computer vision inference.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Favicon & Brand Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/brand/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <meta property="og:image" content="assets/brand/og-image.png">
+  <meta name="twitter:image" content="assets/brand/og-image.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header class="site-header">
+    <div class="container nav-inner">
+            <a class="brand" href="index.html" aria-label="Veyronix Technology Home">
+        <img src="assets/brand/veyronix-logo-horizontal.png" alt="Veyronix Technology" class="brand-logo" width="220" height="38">
+      </a>
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <div class="nav-item">
+          <a class="nav-link" href="solutions.html">Solutions ▼</a>
+          <div class="dropdown-menu dropdown-mega-solutions">
+            <a href="solutions.html#ai-automation" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+              <div><div class="dropdown-title">AI Business Automation</div><div class="dropdown-desc">Connect forms, CRMs & tools into reliable workflows.</div></div>
+            </a>
+            <a href="solutions.html#ai-agents" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg></div>
+              <div><div class="dropdown-title">AI Agents & Chatbots</div><div class="dropdown-desc">Tool-using agents for lead qualification & support.</div></div>
+            </a>
+            <a href="solutions.html#ghl-automation" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+              <div><div class="dropdown-title">GoHighLevel Automation</div><div class="dropdown-desc">CRM architecture, pipelines & follow-up workflows.</div></div>
+            </a>
+            <a href="solutions.html#api-integration" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+              <div><div class="dropdown-title">API & Systems Integration</div><div class="dropdown-desc">Connect SaaS platforms with secure webhooks.</div></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a class="nav-link" href="services.html">Services ▼</a>
+          <div class="dropdown-menu dropdown-mega-services">
+            <a href="services.html#ai-engineering" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/></svg></div>
+              <div><div class="dropdown-title">AI Systems Engineering</div><div class="dropdown-desc">LLM integrations, RAG architecture & computer vision pipelines.</div></div>
+            </a>
+            <a href="services.html#workflow-automation" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/></svg></div>
+              <div><div class="dropdown-title">Workflow Automation</div><div class="dropdown-desc">n8n, Make, and Zapier orchestration with clear fallback logic.</div></div>
+            </a>
+            <a href="services.html#ghl-implementation" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+              <div><div class="dropdown-title">GoHighLevel Implementation</div><div class="dropdown-desc">Complete GHL sub-account setup, custom fields, pipelines & funnels.</div></div>
+            </a>
+            <a href="services.html#custom-software" class="dropdown-item">
+              <div class="dropdown-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/></svg></div>
+              <div><div class="dropdown-title">Custom Software Development</div><div class="dropdown-desc">Python microservices, scalable backends & event-driven architecture.</div></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-item"><a class="nav-link" href="industries.html">Industries</a></div>
+        <div class="nav-item"><a class="nav-link" href="projects.html" style="color:var(--caramel);">Case Studies</a></div>
+        <div class="nav-item"><a class="nav-link" href="technology.html">Technology</a></div>
+        <div class="nav-item"><a class="nav-link" href="about.html">About</a></div>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">🌙</button>
+        <a class="btn btn-primary btn-sm" href="contact.html">Start a Project ↗</a>
+        <button class="mobile-toggle" aria-label="Open Navigation">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" aria-hidden="true">
+    <div class="mobile-drawer-content">
+            <div class="mobile-drawer-header">
+        <a class="brand" href="index.html" aria-label="Veyronix Technology Home">
+          <img src="assets/brand/veyronix-logo-horizontal.png" alt="Veyronix Technology" class="brand-logo" style="max-height:30px;" width="170" height="30">
+        </a>
+        <button class="mobile-drawer-close" aria-label="Close Navigation">✕</button>
+      </div>
+      <div class="mobile-nav-links">
+        <div class="mobile-nav-item"><a href="solutions.html" class="mobile-nav-link">Solutions</a></div>
+        <div class="mobile-nav-item"><a href="services.html" class="mobile-nav-link">Services</a></div>
+        <div class="mobile-nav-item"><a href="industries.html" class="mobile-nav-link">Industries</a></div>
+        <div class="mobile-nav-item"><a href="projects.html" class="mobile-nav-link">Case Studies</a></div>
+        <div class="mobile-nav-item"><a href="technology.html" class="mobile-nav-link">Technology</a></div>
+        <div class="mobile-nav-item"><a href="about.html" class="mobile-nav-link">About</a></div>
+        <div class="mobile-nav-item"><a href="contact.html" class="mobile-nav-link">Contact</a></div>
+      </div>
+      <div style="margin-top:auto; padding-top:16px;">
+        <a href="contact.html" class="btn btn-primary" style="width:100%">Start a Project ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb & Header -->
+  <section class="section section-soft" style="padding:48px 0 36px;">
+    <div class="container">
+      <div style="font-size:0.80rem; color:var(--muted); margin-bottom:12px;">
+        <a href="projects.html" style="color:var(--gold-dark); text-decoration:underline;">← Case Studies</a> / Aervion Smart Aerial Navigation
+      </div>
+      <div class="eyebrow"><span class="dot"></span> APPLIED COMPUTER VISION & EMBEDDED SYSTEMS</div>
+      <h1 style="font-size:clamp(2.2rem, 3.8vw, 3.2rem); margin-bottom:14px;">
+        Aervion — <span class="goldtext">Smart Aerial Navigation System</span>
+      </h1>
+      <p class="lead">
+        AI-powered autonomous drone navigation, visual target identification, click-to-lock tracking, and decoupled asynchronous flight control.
+      </p>
+    </div>
+  </section>
+
+  <!-- Technical Breakdown Content -->
+  <section class="section">
+    <div class="container" style="display:grid; gap:48px; max-width:980px;">
+
+      <!-- Project Overview & Context -->
+      <div class="glass-card">
+        <h2 style="font-size:1.5rem; margin-bottom:14px;">1. Project Overview & Context</h2>
+        <p style="font-size:0.92rem; color:var(--muted); line-height:1.75; margin-bottom:16px;">
+          <b>Aervion</b> is an applied computer vision and drone flight control engineering project built to explore autonomous vision-guided following on lightweight quadcopter platforms (DJI Tello SDK).
+        </p>
+        <p style="font-size:0.92rem; color:var(--muted); line-height:1.75;">
+          The system integrates live video feed streaming, real-time face detection, target tracking, click-to-lock target selection, voice control triggers, and an interactive browser-based dashboard built with Streamlit.
+        </p>
+      </div>
+
+      <!-- The Core Engineering Problem & Architectural Challenge -->
+      <div class="glass-card" style="border-left:4px solid var(--gold);">
+        <h2 style="font-size:1.5rem; margin-bottom:14px;">2. The Core Engineering Challenge</h2>
+        <p style="font-size:0.92rem; color:var(--muted); line-height:1.75; margin-bottom:14px;">
+          In initial prototypes, running deep neural face detection on the main loop caused severe frame-rate drops. Whenever image preprocessing or inference took longer than 80ms, the flight-control loop missed vital command cycles.
+        </p>
+        <div style="background:var(--surface-elevated); padding:18px; border-radius:var(--radius-md); border:1px solid var(--line-subtle); margin-bottom:16px;">
+          <h4 style="font-size:0.90rem; color:#B45309; margin-bottom:6px;">Root Cause:</h4>
+          <p style="font-size:0.86rem; color:var(--ink-secondary); line-height:1.6;">
+            Quadcopter flight stability relies on a continuous high-frequency heartbeat and Proportional-Integral-Derivative (PID) correction loops. Coupling expensive image inference directly to the flight thread led to control latency, erratic yaw/pitch corrections, and safety disconnects.
+          </p>
+        </div>
+        <p style="font-size:0.92rem; color:var(--muted); line-height:1.75;">
+          The primary engineering objective was to achieve smooth, jitter-free target following without sacrificing flight safety or control frequency.
+        </p>
+      </div>
+
+      <!-- System Architecture & Technical Solution -->
+      <div class="glass-card">
+        <h2 style="font-size:1.5rem; margin-bottom:14px;">3. The Decoupled Engineering Architecture</h2>
+        <p style="font-size:0.92rem; color:var(--muted); line-height:1.75; margin-bottom:20px;">
+          We redesigned the system into an asynchronous, multi-threaded pipeline that isolates heavy vision processing from flight telemetry:
+        </p>
+
+        <div class="grid-2" style="margin-bottom:24px;">
+          <div style="background:var(--surface-elevated); padding:20px; border-radius:var(--radius-md); border:1px solid var(--line-subtle);">
+            <div class="capability-label">Thread A: Vision & Inference Worker</div>
+            <ul style="font-size:0.84rem; color:var(--ink-secondary); display:grid; gap:8px; margin-top:8px;">
+              <li>• Ingests 720p UDP video stream from drone camera</li>
+              <li>• Runs OpenCV face detection & bounding-box calculation</li>
+              <li>• Computes target error offset (dx, dy, target area)</li>
+              <li>• Updates shared thread-safe state queue non-blockingly</li>
+            </ul>
+          </div>
+
+          <div style="background:var(--surface-elevated); padding:20px; border-radius:var(--radius-md); border:1px solid var(--line-subtle);">
+            <div class="capability-label">Thread B: Flight Control Loop (50Hz)</div>
+            <ul style="font-size:0.84rem; color:var(--ink-secondary); display:grid; gap:8px; margin-top:8px;">
+              <li>• Reads latest coordinates from thread-safe state</li>
+              <li>• Evaluates PID algorithm for Yaw, Pitch, and Throttle</li>
+              <li>• Maintains continuous SDK heartbeat & emergency failsafes</li>
+              <li>• Transmits RC velocity commands via UDP sockets</li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="font-size:0.90rem; color:var(--ink-secondary); line-height:1.65;">
+          <b>Result:</b> Even if image inference fluctuates due to lighting conditions or complex scenes, the flight stabilization thread continues uninterrupted, ensuring smooth, predictable quadcopter tracking.
+        </p>
+      </div>
+
+      <!-- Verified Capabilities Grid -->
+      <div class="glass-card">
+        <h2 style="font-size:1.5rem; margin-bottom:14px;">4. Verified System Capabilities</h2>
+        <div class="grid-3" style="margin-top:16px;">
+          <div style="padding:16px; background:var(--surface-elevated); border-radius:var(--radius-sm); border:1px solid var(--line-subtle);">
+            <b style="font-size:0.88rem; display:block; margin-bottom:4px; color:var(--ink-heading);">Face Detection</b>
+            <span style="font-size:0.80rem; color:var(--muted);">Haar Cascades & DNN face detectors with dynamic confidence filtering.</span>
+          </div>
+
+          <div style="padding:16px; background:var(--surface-elevated); border-radius:var(--radius-sm); border:1px solid var(--line-subtle);">
+            <b style="font-size:0.88rem; display:block; margin-bottom:4px; color:var(--ink-heading);">Target Lock & Follow</b>
+            <span style="font-size:0.80rem; color:var(--muted);">Bounding box tracking with automated PID yaw and distance estimation.</span>
+          </div>
+
+          <div style="padding:16px; background:var(--surface-elevated); border-radius:var(--radius-sm); border:1px solid var(--line-subtle);">
+            <b style="font-size:0.88rem; display:block; margin-bottom:4px; color:var(--ink-heading);">Safe Following Margins</b>
+            <span style="font-size:0.80rem; color:var(--muted);">Target bounding box area thresholds maintain safe stand-off distances.</span>
+          </div>
+
+          <div style="padding:16px; background:var(--surface-elevated); border-radius:var(--radius-sm); border:1px solid var(--line-subtle);">
+            <b style="font-size:0.88rem; display:block; margin-bottom:4px; color:var(--ink-heading);">Manual & Voice Modes</b>
+            <span style="font-size:0.80rem; color:var(--muted);">Keyboard manual overrides and speech recognition command integration.</span>
+          </div>
+
+          <div style="padding:16px; background:var(--surface-elevated); border-radius:var(--radius-sm); border:1px solid var(--line-subtle);">
+            <b style="font-size:0.88rem; display:block; margin-bottom:4px; color:var(--ink-heading);">Streamlit Telemetry HUD</b>
+            <span style="font-size:0.80rem; color:var(--muted);">Interactive web cockpit displaying battery level, flight speed, and live feed.</span>
+          </div>
+
+          <div style="padding:16px; background:var(--surface-elevated); border-radius:var(--radius-sm); border:1px solid var(--line-subtle);">
+            <b style="font-size:0.88rem; display:block; margin-bottom:4px; color:var(--ink-heading);">Emergency Failsafes</b>
+            <span style="font-size:0.80rem; color:var(--muted);">Instant land, hover, and connection watchdog triggers on signal interruption.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technology Stack -->
+      <div class="glass-card">
+        <h2 style="font-size:1.5rem; margin-bottom:14px;">5. Technology Stack</h2>
+        <div class="grid-4" style="margin-top:16px;">
+          <div style="padding:14px; background:var(--surface-elevated); border-radius:var(--radius-sm); border:1px solid var(--line-subtle);">
+            <small style="color:var(--caramel); font-weight:800; font-size:0.72rem;">CORE LANGUAGE</small>
+            <div style="font-size:0.92rem; font-weight:700; color:var(--ink-heading); margin-top:2px;">Python 3.10+</div>
+          </div>
+          <div style="padding:14px; background:var(--surface-elevated); border-radius:var(--radius-sm); border:1px solid var(--line-subtle);">
+            <small style="color:var(--caramel); font-weight:800; font-size:0.72rem;">COMPUTER VISION</small>
+            <div style="font-size:0.92rem; font-weight:700; color:var(--ink-heading); margin-top:2px;">OpenCV (cv2)</div>
+          </div>
+          <div style="padding:14px; background:var(--surface-elevated); border-radius:var(--radius-sm); border:1px solid var(--line-subtle);">
+            <small style="color:var(--caramel); font-weight:800; font-size:0.72rem;">DRONE PROTOCOL</small>
+            <div style="font-size:0.92rem; font-weight:700; color:var(--ink-heading); margin-top:2px;">DJI-Tello SDK / UDP</div>
+          </div>
+          <div style="padding:14px; background:var(--surface-elevated); border-radius:var(--radius-sm); border:1px solid var(--line-subtle);">
+            <small style="color:var(--caramel); font-weight:800; font-size:0.72rem;">DASHBOARD UI</small>
+            <div style="font-size:0.92rem; font-weight:700; color:var(--ink-heading); margin-top:2px;">Streamlit</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Code & Project Links -->
+      <div class="bridge-banner">
+        <h3 style="font-size:1.4rem; margin-bottom:8px;">Explore More Engineering Projects</h3>
+        <p style="color:var(--muted); font-size:0.90rem; margin-bottom:20px;">
+          Review our other architecture prototypes and case studies across CRM automation, AI copilot systems, and data pipelines.
+        </p>
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+          <a href="projects.html" class="btn btn-soft">← Back to Case Studies</a>
+          <a href="contact.html" class="btn btn-primary">Start a Project →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+    <!-- Global Dark Luxury Brand Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <a href="index.html" aria-label="Veyronix Technology Home">
+            <img src="assets/brand/veyronix-logo-full.png" alt="Veyronix Technology - Vision, Velocity, Venture" class="footer-logo" width="210" height="210">
+          </a>
+          <div class="footer-company-name">Veyronix Technology Private Limited</div>
+          <p class="footer-positioning">
+            AI Automation · Intelligent Systems · Software Engineering
+          </p>
+          <div class="footer-tagline">
+            <span>VISION</span> • <span>VELOCITY</span> • <span>VENTURE</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Solutions</h4>
+          <ul>
+            <li><a href="solutions.html#ai-automation">AI Business Automation</a></li>
+            <li><a href="solutions.html#ai-agents">AI Agents & Chatbots</a></li>
+            <li><a href="solutions.html#ghl-automation">GoHighLevel Automation</a></li>
+            <li><a href="solutions.html#crm-lead">CRM & Lead Automation</a></li>
+            <li><a href="solutions.html#api-integration">API & Systems Integration</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#ai-engineering">AI Systems Engineering</a></li>
+            <li><a href="services.html#workflow-automation">Workflow Automation</a></li>
+            <li><a href="services.html#ghl-implementation">GoHighLevel Setup</a></li>
+            <li><a href="services.html#custom-software">Custom Software</a></li>
+            <li><a href="services.html#web-saas">Web & SaaS Development</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Veyronix</a></li>
+            <li><a href="projects.html">Case Studies</a></li>
+            <li><a href="case-study-aervion.html">Aervion Study</a></li>
+            <li><a href="technology.html">Technology Stack</a></li>
+            <li><a href="contact.html">Start a Project</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Official Contact</h4>
+          <ul>
+            <li class="footer-contact-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:veyronixtechnologies@gmail.com">veyronixtechnologies@gmail.com</a>
+            </li>
+            <li class="footer-contact-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+923390023451" aria-label="Call Veyronix Technology at +92 339 0023451">+92 339 0023451</a>
+            </li>
+            <li style="margin-top:8px;">
+              <a href="contact.html" style="color:var(--gold-light); font-weight:700;">Send Project Brief →</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© <span data-year>2026</span> Veyronix Technology Private Limited. All rights reserved.</div>
+        <div style="color:#A89F91;">VISION • VELOCITY • VENTURE</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
