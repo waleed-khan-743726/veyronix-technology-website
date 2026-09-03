@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Veyronix Technology</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/brand/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="admin/admin.css">
+
+  <!-- Firebase Web SDK (v10 compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. LOGIN INTERFACE
+       ========================================================================== -->
+  <div id="loginSection" class="admin-login-wrapper">
+    <div class="login-card">
+      <img src="assets/brand/veyronix-logo-horizontal.png" alt="Veyronix Technology" class="login-logo" width="180" height="32">
+      <div class="login-title">Administrator Portal</div>
+      <div class="login-subtitle">Sign in with your authorized Veyronix credentials.</div>
+
+      <div id="loginNotice" class="login-notice"></div>
+
+      <form id="loginForm">
+        <div class="login-field">
+          <label for="adminEmail">Admin Email</label>
+          <input type="email" id="adminEmail" class="login-input" required placeholder="admin@veyronix.com" autocomplete="email">
+        </div>
+
+        <div class="login-field">
+          <label for="adminPassword">Password</label>
+          <input type="password" id="adminPassword" class="login-input" required placeholder="••••••••••••" autocomplete="current-password">
+        </div>
+
+        <button type="submit" id="loginSubmitBtn" class="login-btn">
+          Authenticate Session →
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. AUTHENTICATED DASHBOARD
+       ========================================================================== -->
+  <div id="dashboardSection" class="admin-layout" style="display:none;">
+    
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div>
+        <div class="sidebar-brand">
+          <img src="assets/brand/veyronix-logo-horizontal.png" alt="Veyronix" style="max-height:28px; width:auto;" width="160" height="28">
+        </div>
+        <nav class="sidebar-nav">
+          <button class="sidebar-nav-btn active" data-tab="leads">
+            <span>📋</span> Inbound Leads
+          </button>
+          <button class="sidebar-nav-btn" data-tab="analytics">
+            <span>📊</span> Telemetry & KPIs
+          </button>
+        </nav>
+      </div>
+
+      <div class="sidebar-user-box">
+        <div class="user-email-text" id="currentUserEmail">admin@veyronix.com</div>
+        <button id="logoutBtn" class="logout-btn">Sign Out</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      
+      <!-- Top Bar -->
+      <header class="admin-header">
+        <div>
+          <h1 class="admin-title">Operational CRM & Leads</h1>
+          <div style="font-size:0.80rem; color:var(--admin-text-muted); margin-top:2px;">
+            Synchronized with Google Sheets CRM Database
+          </div>
+        </div>
+        <div>
+          <button id="exportCsvBtn" class="btn-export">
+            <span>📥</span> Export CSV
+          </button>
+        </div>
+      </header>
+
+      <!-- KPI Summary Cards -->
+      <section class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Inquiries</div>
+          <div class="kpi-value" id="kpiTotalLeads">—</div>
+          <div class="kpi-sub">All-time submissions</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">New / Actionable</div>
+          <div class="kpi-value" id="kpiNewLeads" style="color:#60A5FA;">—</div>
+          <div class="kpi-sub">Awaiting team response</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">Inquiries (7 Days)</div>
+          <div class="kpi-value" id="kpiWeekLeads">—</div>
+          <div class="kpi-sub">Trailing 7 days</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">Pipeline Conversion</div>
+          <div class="kpi-value" id="kpiConversionRate" style="color:#4ADE80;">—</div>
+          <div class="kpi-sub">Won / Total Inquiries</div>
+        </div>
+      </section>
+
+      <!-- Leads Table Controls -->
+      <div class="controls-bar">
+        <input type="text" id="leadSearchInput" class="search-input" placeholder="Search by name, company, email, or Lead ID...">
+        
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <select id="statusFilter" class="filter-select">
+            <option value="ALL">All Statuses</option>
+            <option value="NEW">NEW</option>
+            <option value="CONTACTED">CONTACTED</option>
+            <option value="QUALIFIED">QUALIFIED</option>
+            <option value="PROPOSAL">PROPOSAL</option>
+            <option value="WON">WON</option>
+            <option value="LOST">LOST</option>
+          </select>
+
+          <select id="priorityFilter" class="filter-select">
+            <option value="ALL">All Priorities</option>
+            <option value="URGENT">URGENT</option>
+            <option value="HIGH">HIGH</option>
+            <option value="NORMAL">NORMAL</option>
+            <option value="LOW">LOW</option>
+          </select>
+
+          <button id="refreshLeadsBtn" class="filter-select" style="cursor:pointer;">🔄 Refresh</button>
+        </div>
+      </div>
+
+      <!-- Leads Table Container -->
+      <div class="table-container">
+        <table class="leads-table">
+          <thead>
+            <tr>
+              <th>Lead ID</th>
+              <th>Date</th>
+              <th>Contact Name</th>
+              <th>Company</th>
+              <th>Project Scope</th>
+              <th>Budget</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="leadsTableBody">
+            <tr>
+              <td colspan="9" style="text-align:center; padding:32px; color:var(--admin-text-muted);">
+                Loading live submissions from Google Sheets...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       3. LEAD DETAIL MODAL
+       ========================================================================== -->
+  <div id="leadModal" class="modal-overlay">
+    <div class="modal-content">
+      <button id="modalCloseBtn" class="modal-close-btn">✕</button>
+
+      <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--admin-gold); font-weight:700; margin-bottom:6px;">
+        LEAD DETAILS & LIFECYCLE
+      </div>
+      <h2 id="modalLeadName" style="font-size:1.4rem; margin-bottom:16px;">—</h2>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; font-size:0.86rem;">
+        <div><strong>Lead ID:</strong> <span id="modalLeadId" style="font-family:var(--font-mono);">—</span></div>
+        <div><strong>Submitted At:</strong> <span id="modalDate">—</span></div>
+        <div><strong>Email:</strong> <span id="modalEmail">—</span></div>
+        <div><strong>Phone:</strong> <span id="modalPhone">—</span></div>
+        <div><strong>Company:</strong> <span id="modalCompany">—</span></div>
+        <div><strong>Website:</strong> <span id="modalWebsite">—</span></div>
+        <div><strong>Country / Timezone:</strong> <span id="modalTimezone">—</span></div>
+        <div><strong>Timeline:</strong> <span id="modalTimeline">—</span></div>
+        <div style="grid-column:1/-1;"><strong>Scope:</strong> <span id="modalScope" style="color:var(--admin-gold);">—</span></div>
+        <div style="grid-column:1/-1;"><strong>Budget:</strong> <span id="modalBudget">—</span></div>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <strong style="font-size:0.86rem;">Project Brief:</strong>
+        <div id="modalBrief" style="background:rgba(255,255,255,0.03); border:1px solid var(--admin-border); padding:12px 14px; border-radius:8px; margin-top:6px; font-size:0.88rem; line-height:1.6; white-space:pre-wrap;">—</div>
+      </div>
+
+      <form id="leadUpdateForm" style="border-top:1px solid var(--admin-border); padding-top:20px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div>
+            <label style="font-size:0.78rem; color:var(--admin-text-muted); display:block; margin-bottom:4px;">Lead Status</label>
+            <select id="modalStatusSelect" class="login-input" style="width:100%;">
+              <option value="NEW">NEW</option>
+              <option value="CONTACTED">CONTACTED</option>
+              <option value="QUALIFIED">QUALIFIED</option>
+              <option value="PROPOSAL">PROPOSAL</option>
+              <option value="WON">WON</option>
+              <option value="LOST">LOST</option>
+              <option value="ARCHIVED">ARCHIVED</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size:0.78rem; color:var(--admin-text-muted); display:block; margin-bottom:4px;">Priority</label>
+            <select id="modalPrioritySelect" class="login-input" style="width:100%;">
+              <option value="LOW">LOW</option>
+              <option value="NORMAL">NORMAL</option>
+              <option value="HIGH">HIGH</option>
+              <option value="URGENT">URGENT</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <label style="font-size:0.78rem; color:var(--admin-text-muted); display:block; margin-bottom:4px;">Admin Notes</label>
+          <textarea id="modalAdminNotes" class="login-input" style="width:100%; min-height:80px;" placeholder="Add internal team notes or follow-up details..."></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:10px;">
+          <button type="button" id="modalCancelBtn" class="logout-btn" style="padding:10px 16px;">Cancel</button>
+          <button type="submit" id="modalSaveBtn" class="login-btn" style="width:auto; padding:10px 24px; margin-top:0;">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin/admin.js"></script>
+</body>
+</html>
