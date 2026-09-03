@@ -1,16 +1,14 @@
 {
-  "version": 2,
   "cleanUrls": true,
-  "trailingSlash": false,
-  "headers": [
-    {
-      "source": "/assets/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    }
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/solutions", "destination": "/solutions.html" },
+    { "source": "/services", "destination": "/services.html" },
+    { "source": "/industries", "destination": "/industries.html" },
+    { "source": "/projects", "destination": "/projects.html" },
+    { "source": "/case-study-aervion", "destination": "/case-study-aervion.html" },
+    { "source": "/technology", "destination": "/technology.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/contact", "destination": "/contact.html" }
   ]
 }
