@@ -1,14 +1,15 @@
 {
-  "cleanUrls": true,
-  "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/solutions", "destination": "/solutions.html" },
-    { "source": "/services", "destination": "/services.html" },
-    { "source": "/industries", "destination": "/industries.html" },
-    { "source": "/projects", "destination": "/projects.html" },
-    { "source": "/case-study-aervion", "destination": "/case-study-aervion.html" },
-    { "source": "/technology", "destination": "/technology.html" },
-    { "source": "/about", "destination": "/about.html" },
-    { "source": "/contact", "destination": "/contact.html" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
   ]
 }
