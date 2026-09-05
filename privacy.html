@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy | Veyronix Technology</title>
-  <meta name="description" content="Privacy policy for Veyronix Technology Private Limited detailing data protection, voluntary inquiry processing, and analytics.">
+  <meta name="description" content="Privacy policy for Veyronix Technology Private Limited detailing data protection, voluntary inquiry processing, and first-party analytics.">
   <link rel="canonical" href="https://veyronixtechnologies.vercel.app/privacy.html">
   
   <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32x32.png">
@@ -14,6 +14,7 @@
   <meta property="og:image" content="assets/brand/og-image.png">
 
   <link rel="stylesheet" href="styles.css">
+  <script src="data/analytics.js" defer></script>
 </head>
 <body>
 
@@ -51,53 +52,63 @@
           Privacy Policy
         </h1>
         <p class="lead-muted" style="margin-bottom:32px;">
-          Last updated: September 3, 2026. Veyronix Technology Private Limited ("Veyronix", "we", "us", or "our") respects your privacy and is committed to protecting your personal information.
+          Last updated: September 6, 2026. Veyronix Technology Private Limited ("Veyronix", "we", "us", or "our") is dedicated to safeguarding your privacy and ensuring transparent processing of data.
         </p>
 
         <div class="glass-card" style="padding:40px; display:grid; gap:24px; font-size:0.92rem; line-height:1.7; color:var(--text-secondary);">
           <div>
-            <h2 style="font-size:1.3rem; color:var(--text-primary); margin-bottom:8px;">1. Information We Collect</h2>
+            <h2 style="font-size:1.3rem; color:var(--text-primary); margin-bottom:8px;">1. Information You Voluntarily Provide</h2>
             <p>
-              We collect information that you voluntarily provide when submitting a project inquiry, scheduling a consultation, or contacting us directly via email or phone. This may include your name, business email address, phone number, company name, website, and project scope requirements.
+              When you submit an engineering project brief or schedule a consultation via our website, we collect the contact details and project requirements you voluntarily enter. This includes your name, corporate email address, phone number, company name, website, country, timezone, estimated budget, timeline, current tech stack, and scope brief.
             </p>
           </div>
 
           <div>
-            <h2 style="font-size:1.3rem; color:var(--text-primary); margin-bottom:8px;">2. How We Use Your Information</h2>
+            <h2 style="font-size:1.3rem; color:var(--text-primary); margin-bottom:8px;">2. First-Party Visitor Analytics & Session Traceability</h2>
             <p>
-              We use the collected information exclusively to:
+              To optimize user journeys and measure marketing channel efficacy, our website deploys privacy-conscious, first-party analytics:
             </p>
-            <ul style="margin-left:20px; margin-top:8px; display:grid; gap:4px;">
-              <li>• Evaluate your technical requirements and respond to your project brief.</li>
-              <li>• Provide transactional email receipts and scheduling links.</li>
-              <li>• Maintain our internal operational lead records and communication history.</li>
-              <li>• Comply with applicable legal and business obligations.</li>
+            <ul style="margin-left:20px; margin-top:8px; display:grid; gap:6px;">
+              <li>• <strong>Anonymous Visitor ID:</strong> A pseudonymous identifier (<code>vyx_v_...</code>) stored locally in browser storage without encoding personally identifiable information.</li>
+              <li>• <strong>Session Tracking:</strong> A temporary session identifier (<code>vyx_s_...</code>) that automatically rolls over after 30 minutes of inactivity to track engagement depth.</li>
+              <li>• <strong>Acquisition Attribution:</strong> First-touch marketing campaign metadata (such as UTM parameters, referring domain, and landing page path).</li>
+              <li>• <strong>Coarse Telemetry:</strong> Aggregated device categories (Desktop/Mobile), browser types, and approximate country-level geographic location derived from server headers.</li>
             </ul>
-          </div>
-
-          <div>
-            <h2 style="font-size:1.3rem; color:var(--text-primary); margin-bottom:8px;">3. Data Storage & Security</h2>
-            <p>
-              Inbound project briefs are securely processed through our serverless API and stored in enterprise Google Cloud infrastructure. We employ industry-standard encryption, strict access control, and automated formula injection sanitization to protect your information against unauthorized access.
+            <p style="margin-top:8px;">
+              We strictly <strong>do not</strong> perform keystroke logging, canvas/audio fingerprinting, clipboard monitoring, or continuous cursor tracking.
             </p>
           </div>
 
           <div>
-            <h2 style="font-size:1.3rem; color:var(--text-primary); margin-bottom:8px;">4. Analytics & Tracking</h2>
+            <h2 style="font-size:1.3rem; color:var(--text-primary); margin-bottom:8px;">3. Data Storage & Google Sheets CRM Integration</h2>
             <p>
-              We utilize Google Analytics 4 (GA4) to understand aggregated website performance, device categories, and general traffic sources. We do not use invasive fingerprinting, keystroke logging, or sell your personal data to third parties.
+              Inbound project briefs and associated session telemetry are transmitted over encrypted HTTPS connections to our serverless endpoints and stored in our secured Google Sheets CRM database hosted on Google Cloud enterprise infrastructure. We employ formula injection neutralization, rate limiting, and authenticated access control to prevent unauthorized disclosure.
             </p>
           </div>
 
           <div>
-            <h2 style="font-size:1.3rem; color:var(--text-primary); margin-bottom:8px;">5. Contact Information</h2>
+            <h2 style="font-size:1.3rem; color:var(--text-primary); margin-bottom:8px;">4. Transactional Communications</h2>
             <p>
-              If you have questions regarding this Privacy Policy or wish to request the deletion or correction of your submitted information, please contact us at:
+              Upon submitting a project inquiry, our systems dispatch automated transactional confirmation emails (via Resend) to both our engineering review team and your provided email address, containing your reference ID and submission recap.
+            </p>
+          </div>
+
+          <div>
+            <h2 style="font-size:1.3rem; color:var(--text-primary); margin-bottom:8px;">5. Third-Party Services & Secondary Analytics</h2>
+            <p>
+              We maintain Google Analytics 4 (GA4) as a secondary measurement platform for aggregate traffic reporting. We do not sell, lease, or distribute your inquiry data to data brokers or third-party advertisers.
+            </p>
+          </div>
+
+          <div>
+            <h2 style="font-size:1.3rem; color:var(--text-primary); margin-bottom:8px;">6. Inquiries & Data Rights</h2>
+            <p>
+              You have the right to request access to, correction of, or deletion of your submitted project brief and contact records. To submit a request, contact our security and engineering team:
             </p>
             <p style="margin-top:8px; font-family:var(--font-mono); color:var(--gold-01);">
               Veyronix Technology Private Limited<br>
               Email: veyronixtechnologies@gmail.com<br>
-              Phone: +92 339 0023451
+              Direct: +92 339 0023451
             </p>
           </div>
         </div>

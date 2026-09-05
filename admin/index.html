@@ -13,14 +13,14 @@
 
   <link rel="stylesheet" href="admin.css">
 
-  <!-- Firebase Web SDK (v10 compat for stable browser loading) -->
+  <!-- Firebase Web SDK (v10 compat) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 </head>
 <body>
 
   <!-- ==========================================================================
-       1. LOGIN INTERFACE (Displayed when unauthenticated)
+       1. LOGIN INTERFACE
        ========================================================================== -->
   <div id="loginSection" class="admin-login-wrapper">
     <div class="login-card">
@@ -49,7 +49,7 @@
   </div>
 
   <!-- ==========================================================================
-       2. AUTHENTICATED DASHBOARD (Displayed upon verified admin login)
+       2. AUTHENTICATED DASHBOARD
        ========================================================================== -->
   <div id="dashboardSection" class="admin-layout" style="display:none;">
     
@@ -60,10 +60,10 @@
           <img src="../assets/brand/veyronix-logo-horizontal.png" alt="Veyronix" style="max-height:28px; width:auto;" width="160" height="28">
         </div>
         <nav class="sidebar-nav">
-          <button class="sidebar-nav-btn active" data-tab="leads">
+          <button class="sidebar-nav-btn active" data-tab="leads" id="tabNavLeads">
             <span>📋</span> Inbound Leads
           </button>
-          <button class="sidebar-nav-btn" data-tab="analytics">
+          <button class="sidebar-nav-btn" data-tab="analytics" id="tabNavAnalytics">
             <span>📊</span> Telemetry & KPIs
           </button>
         </nav>
@@ -78,99 +78,255 @@
     <!-- Main Content -->
     <main class="admin-main">
       
-      <!-- Top Bar -->
-      <header class="admin-header">
-        <div>
-          <h1 class="admin-title">Operational CRM & Leads</h1>
-          <div style="font-size:0.80rem; color:var(--admin-text-muted); margin-top:2px;">
-            Synchronized with Google Sheets CRM Database
+      <!-- ====================================================================
+           TAB 1: INBOUND LEADS CRM
+           ==================================================================== -->
+      <div id="viewLeads" class="dashboard-tab-view">
+        <header class="admin-header">
+          <div>
+            <h1 class="admin-title">Operational CRM & Leads</h1>
+            <div style="font-size:0.80rem; color:var(--admin-text-muted); margin-top:2px;">
+              Synchronized with Google Sheets CRM Database
+            </div>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button id="exportCsvBtn" class="btn-export">
+              <span>📥</span> Export CSV
+            </button>
+          </div>
+        </header>
+
+        <!-- KPI Summary Cards -->
+        <section class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Total Inquiries</div>
+            <div class="kpi-value" id="kpiTotalLeads">—</div>
+            <div class="kpi-sub">All-time submissions</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-label">New / Actionable</div>
+            <div class="kpi-value" id="kpiNewLeads" style="color:#60A5FA;">—</div>
+            <div class="kpi-sub">Awaiting team response</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-label">Inquiries (7 Days)</div>
+            <div class="kpi-value" id="kpiWeekLeads">—</div>
+            <div class="kpi-sub">Trailing 7 days</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-label">Pipeline Conversion</div>
+            <div class="kpi-value" id="kpiConversionRate" style="color:#4ADE80;">—</div>
+            <div class="kpi-sub">Won / Total Inquiries</div>
+          </div>
+        </section>
+
+        <!-- Leads Table Controls -->
+        <div class="controls-bar">
+          <input type="text" id="leadSearchInput" class="search-input" placeholder="Search by name, company, email, or Lead ID...">
+          
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <select id="statusFilter" class="filter-select">
+              <option value="ALL">All Statuses</option>
+              <option value="NEW">NEW</option>
+              <option value="CONTACTED">CONTACTED</option>
+              <option value="QUALIFIED">QUALIFIED</option>
+              <option value="PROPOSAL">PROPOSAL</option>
+              <option value="WON">WON</option>
+              <option value="LOST">LOST</option>
+              <option value="ARCHIVED">ARCHIVED</option>
+            </select>
+
+            <select id="priorityFilter" class="filter-select">
+              <option value="ALL">All Priorities</option>
+              <option value="URGENT">URGENT</option>
+              <option value="HIGH">HIGH</option>
+              <option value="NORMAL">NORMAL</option>
+              <option value="LOW">LOW</option>
+            </select>
+
+            <button id="refreshLeadsBtn" class="filter-select" style="cursor:pointer;">🔄 Refresh</button>
           </div>
         </div>
-        <div>
-          <button id="exportCsvBtn" class="btn-export">
-            <span>📥</span> Export CSV
-          </button>
-        </div>
-      </header>
 
-      <!-- KPI Summary Cards -->
-      <section class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-label">Total Inquiries</div>
-          <div class="kpi-value" id="kpiTotalLeads">—</div>
-          <div class="kpi-sub">All-time submissions</div>
-        </div>
-
-        <div class="kpi-card">
-          <div class="kpi-label">New / Actionable</div>
-          <div class="kpi-value" id="kpiNewLeads" style="color:#60A5FA;">—</div>
-          <div class="kpi-sub">Awaiting team response</div>
-        </div>
-
-        <div class="kpi-card">
-          <div class="kpi-label">Inquiries (7 Days)</div>
-          <div class="kpi-value" id="kpiWeekLeads">—</div>
-          <div class="kpi-sub">Trailing 7 days</div>
-        </div>
-
-        <div class="kpi-card">
-          <div class="kpi-label">Pipeline Conversion</div>
-          <div class="kpi-value" id="kpiConversionRate" style="color:#4ADE80;">—</div>
-          <div class="kpi-sub">Won / Total Inquiries</div>
-        </div>
-      </section>
-
-      <!-- Leads Table Controls -->
-      <div class="controls-bar">
-        <input type="text" id="leadSearchInput" class="search-input" placeholder="Search by name, company, email, or Lead ID...">
-        
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <select id="statusFilter" class="filter-select">
-            <option value="ALL">All Statuses</option>
-            <option value="NEW">NEW</option>
-            <option value="CONTACTED">CONTACTED</option>
-            <option value="QUALIFIED">QUALIFIED</option>
-            <option value="PROPOSAL">PROPOSAL</option>
-            <option value="WON">WON</option>
-            <option value="LOST">LOST</option>
-          </select>
-
-          <select id="priorityFilter" class="filter-select">
-            <option value="ALL">All Priorities</option>
-            <option value="URGENT">URGENT</option>
-            <option value="HIGH">HIGH</option>
-            <option value="NORMAL">NORMAL</option>
-            <option value="LOW">LOW</option>
-          </select>
-
-          <button id="refreshLeadsBtn" class="filter-select" style="cursor:pointer;">🔄 Refresh</button>
+        <!-- Leads Table Container -->
+        <div class="table-container">
+          <table class="leads-table">
+            <thead>
+              <tr>
+                <th>Lead ID</th>
+                <th>Date</th>
+                <th>Contact Name</th>
+                <th>Company</th>
+                <th>Project Scope</th>
+                <th>Budget</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="leadsTableBody">
+              <tr>
+                <td colspan="9" style="text-align:center; padding:32px; color:var(--admin-text-muted);">
+                  Fetching live lead records from Google Sheets...
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <!-- Leads Table Container -->
-      <div class="table-container">
-        <table class="leads-table">
-          <thead>
-            <tr>
-              <th>Lead ID</th>
-              <th>Date</th>
-              <th>Contact Name</th>
-              <th>Company</th>
-              <th>Project Scope</th>
-              <th>Budget</th>
-              <th>Status</th>
-              <th>Priority</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="leadsTableBody">
-            <tr>
-              <td colspan="9" style="text-align:center; padding:32px; color:var(--admin-text-muted);">
-                Loading live submissions from Google Sheets...
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- ====================================================================
+           TAB 2: TELEMETRY & VISITOR ANALYTICS
+           ==================================================================== -->
+      <div id="viewAnalytics" class="dashboard-tab-view" style="display:none;">
+        <header class="admin-header">
+          <div>
+            <h1 class="admin-title">Visitor Telemetry & Conversion Analytics</h1>
+            <div style="font-size:0.80rem; color:var(--admin-text-muted); margin-top:2px;">
+              Privacy-Conscious First-Party Traceability Engine & GA4 Telemetry
+            </div>
+          </div>
+          <div>
+            <button id="refreshAnalyticsBtn" class="filter-select" style="cursor:pointer;">🔄 Refresh Telemetry</button>
+          </div>
+        </header>
+
+        <!-- Telemetry Summary Cards -->
+        <section class="kpi-grid-6">
+          <div class="kpi-card">
+            <div class="kpi-label">Visitors Today</div>
+            <div class="kpi-value" id="telemetryVisitorsToday" style="font-size:1.3rem;">0</div>
+            <div class="kpi-sub">Unique visitors</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Visitors (7D)</div>
+            <div class="kpi-value" id="telemetryVisitors7d" style="font-size:1.3rem;">0</div>
+            <div class="kpi-sub">Trailing 7 days</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Sessions Today</div>
+            <div class="kpi-value" id="telemetrySessionsToday" style="font-size:1.3rem; color:#60A5FA;">0</div>
+            <div class="kpi-sub">30-min sessions</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Page Views</div>
+            <div class="kpi-value" id="telemetryPageViews" style="font-size:1.3rem;">0</div>
+            <div class="kpi-sub">Total views</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Avg Pages / Sess</div>
+            <div class="kpi-value" id="telemetryAvgPages" style="font-size:1.3rem;">1.0</div>
+            <div class="kpi-sub">Depth of visit</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">CTA Clicks</div>
+            <div class="kpi-value" id="telemetryCtaClicks" style="font-size:1.3rem; color:#4ADE80;">0</div>
+            <div class="kpi-sub">Project CTA actions</div>
+          </div>
+        </section>
+
+        <!-- Funnel Section -->
+        <div class="analytics-section-title">
+          <span>🎯</span> Conversion Funnel
+        </div>
+        <div class="funnel-container">
+          <div class="funnel-grid" id="funnelStepsGrid">
+            <div class="funnel-step-card">
+              <div class="funnel-step-name">Visitors</div>
+              <div class="funnel-step-count" id="funnelVisitors">0</div>
+              <div class="funnel-step-rate">100%</div>
+            </div>
+            <div class="funnel-step-card">
+              <div class="funnel-step-name">Start Project</div>
+              <div class="funnel-step-count" id="funnelStartProject">0</div>
+              <div class="funnel-step-rate" id="funnelStartProjectRate">0.0%</div>
+            </div>
+            <div class="funnel-step-card">
+              <div class="funnel-step-name">Form Started</div>
+              <div class="funnel-step-count" id="funnelFormStarted">0</div>
+              <div class="funnel-step-rate" id="funnelFormStartedRate">0.0%</div>
+            </div>
+            <div class="funnel-step-card">
+              <div class="funnel-step-name">Submitted</div>
+              <div class="funnel-step-count" id="funnelFormSubmitted">0</div>
+              <div class="funnel-step-rate" id="funnelFormSubmittedRate">0.0%</div>
+            </div>
+            <div class="funnel-step-card">
+              <div class="funnel-step-name">Lead Saved</div>
+              <div class="funnel-step-count" id="funnelLeadsSaved" style="color:#4ADE80;">0</div>
+              <div class="funnel-step-rate" id="funnelLeadsSavedRate">0.0%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Traffic Breakdown Grid -->
+        <div class="analytics-two-col">
+          <div class="analytics-card">
+            <div class="analytics-card-header">
+              <span>Traffic Sources & Marketing Campaigns</span>
+            </div>
+            <div id="trafficSourcesList">
+              <div class="data-row"><span class="data-key">Direct / Organic</span><span class="data-val">—</span></div>
+            </div>
+          </div>
+
+          <div class="analytics-card">
+            <div class="analytics-card-header">
+              <span>Top Landing & Exit Pages</span>
+            </div>
+            <div id="landingPagesList">
+              <div class="data-row"><span class="data-key">/</span><span class="data-val">—</span></div>
+            </div>
+          </div>
+
+          <div class="analytics-card">
+            <div class="analytics-card-header">
+              <span>Geographic Distribution (Country)</span>
+            </div>
+            <div id="countriesList">
+              <div class="data-row"><span class="data-key">Global</span><span class="data-val">—</span></div>
+            </div>
+          </div>
+
+          <div class="analytics-card">
+            <div class="analytics-card-header">
+              <span>Devices & Technology</span>
+            </div>
+            <div id="devicesList">
+              <div class="data-row"><span class="data-key">Desktop</span><span class="data-val">—</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity Feed -->
+        <div class="analytics-section-title">
+          <span>⚡</span> Recent Visitor & Lead Activity
+        </div>
+        <div class="table-container" style="margin-bottom:30px;">
+          <table class="leads-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Event</th>
+                <th>Page</th>
+                <th>Element / CTA</th>
+                <th>Visitor / Session ID</th>
+                <th>Lead Link</th>
+              </tr>
+            </thead>
+            <tbody id="recentActivityTableBody">
+              <tr>
+                <td colspan="6" style="text-align:center; padding:24px; color:var(--admin-text-muted);">
+                  Loading recent events...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
 
     </main>
@@ -188,22 +344,48 @@
       </div>
       <h2 id="modalLeadName" style="font-size:1.4rem; margin-bottom:16px;">—</h2>
 
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; font-size:0.86rem;">
-        <div><strong>Lead ID:</strong> <span id="modalLeadId" style="font-family:var(--font-mono);">—</span></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px; font-size:0.86rem;">
+        <div><strong>Lead ID:</strong> <span id="modalLeadId" style="font-family:var(--font-mono); color:var(--admin-gold);">—</span></div>
         <div><strong>Submitted At:</strong> <span id="modalDate">—</span></div>
         <div><strong>Email:</strong> <span id="modalEmail">—</span></div>
         <div><strong>Phone:</strong> <span id="modalPhone">—</span></div>
         <div><strong>Company:</strong> <span id="modalCompany">—</span></div>
         <div><strong>Website:</strong> <span id="modalWebsite">—</span></div>
-        <div><strong>Country / Timezone:</strong> <span id="modalTimezone">—</span></div>
+        <div><strong>Country:</strong> <span id="modalCountry">—</span></div>
         <div><strong>Timeline:</strong> <span id="modalTimeline">—</span></div>
-        <div style="grid-column:1/-1;"><strong>Scope:</strong> <span id="modalScope" style="color:var(--admin-gold);">—</span></div>
-        <div style="grid-column:1/-1;"><strong>Budget:</strong> <span id="modalBudget">—</span></div>
+        <div><strong>Current Stack:</strong> <span id="modalTechStack">—</span></div>
+        <div><strong>Scope:</strong> <span id="modalScope" style="color:var(--admin-gold); font-weight:600;">—</span></div>
+        <div style="grid-column:1/-1;"><strong>Budget:</strong> <span id="modalBudget" style="font-family:var(--font-mono);">—</span></div>
       </div>
 
-      <div style="margin-bottom:20px;">
+      <div style="margin-bottom:18px;">
         <strong style="font-size:0.86rem;">Project Brief:</strong>
         <div id="modalBrief" style="background:rgba(255,255,255,0.03); border:1px solid var(--admin-border); padding:12px 14px; border-radius:8px; margin-top:6px; font-size:0.88rem; line-height:1.6; white-space:pre-wrap;">—</div>
+      </div>
+
+      <!-- Acquisition & Attribution Details -->
+      <div style="margin-bottom:18px; background:var(--admin-bg-elevated); border:1px solid var(--admin-border); padding:14px; border-radius:8px; font-size:0.82rem;">
+        <div style="font-family:var(--font-mono); font-weight:700; color:var(--admin-gold); margin-bottom:8px; font-size:0.75rem; text-transform:uppercase;">
+          Marketing Attribution & Visitor Identifiers
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div><strong>Source / Medium:</strong> <span id="modalSourceMedium">—</span></div>
+          <div><strong>Campaign:</strong> <span id="modalCampaign">—</span></div>
+          <div><strong>Landing Page:</strong> <span id="modalLandingPage">—</span></div>
+          <div><strong>Referrer:</strong> <span id="modalReferrer">—</span></div>
+          <div><strong>Visitor ID:</strong> <span id="modalVisitorId" style="font-family:var(--font-mono); font-size:0.75rem;">—</span></div>
+          <div><strong>Session ID:</strong> <span id="modalSessionId" style="font-family:var(--font-mono); font-size:0.75rem;">—</span></div>
+        </div>
+      </div>
+
+      <!-- Customer Journey Touchpoints -->
+      <div style="margin-bottom:20px;">
+        <div style="font-family:var(--font-mono); font-weight:700; color:var(--admin-gold); font-size:0.75rem; text-transform:uppercase; margin-bottom:6px;">
+          Visitor Journey (Touchpoints Prior to Inquiry)
+        </div>
+        <div id="modalJourneyContainer" class="journey-timeline">
+          <div style="font-size:0.80rem; color:var(--admin-text-muted);">Loading visitor journey...</div>
+        </div>
       </div>
 
       <!-- Live Editable Status / Priority / Notes -->

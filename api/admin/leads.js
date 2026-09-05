@@ -1,13 +1,16 @@
 /**
  * Admin Leads Management Endpoint
- * GET /api/admin/leads — List and filter leads
- * PATCH /api/admin/leads — Update lead status, priority, or notes
+ * GET /api/admin/leads — Retrieve and filter live lead records from Google Sheets
+ * PATCH /api/admin/leads — Update lead status, priority, or admin notes in Google Sheets
  */
 
 import { verifyAdminAuth } from '../_lib/auth.js';
 import { getLeadsFromSheet, updateLeadInSheet } from '../_lib/sheets.js';
 
 export default async function handler(req, res) {
+  // Enforce no-store caching for real-time CRM updates
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+
   let adminUser;
   try {
     adminUser = await verifyAdminAuth(req);
@@ -19,45 +22,10 @@ export default async function handler(req, res) {
     });
   }
 
-  // --- GET: List and filter leads ---
+  // --- GET: List and filter live leads ---
   if (req.method === 'GET') {
     try {
-      let leads = [];
-      try {
-        leads = await getLeadsFromSheet();
-      } catch (sheetErr) {
-        console.warn('[Admin Leads Fetch Warning]', sheetErr.message);
-        // If sheet credentials are not yet set, return structured mock data for admin preview
-        if (sheetErr.message.includes('CREDENTIALS_MISSING')) {
-          leads = [
-            {
-              'Lead ID': 'VYX-DEMO-001',
-              'Created At': new Date().toISOString(),
-              'First Name': 'Alex',
-              'Last Name': 'Morgan',
-              'Email': 'alex@nexusscale.io',
-              'Phone': '+1 (555) 349-2041',
-              'Company': 'Nexus Scale Corp',
-              'Website': 'https://nexusscale.io',
-              'Country / Timezone': 'United States (EST)',
-              'Project Type': 'GoHighLevel (GHL) Architecture',
-              'Budget': '$5,000 – $10,000',
-              'Timeline': 'Within 1 Month',
-              'Current Tech Stack': 'HubSpot, Zapier, Stripe',
-              'Project Description': 'We need a full GoHighLevel pipeline build with multi-stage inbound qualification and SMS reminders.',
-              'Page Submitted From': '/contact.html',
-              'UTM Source': 'google',
-              'UTM Medium': 'cpc',
-              'UTM Campaign': 'ghl_automation',
-              'Status': 'NEW',
-              'Priority': 'HIGH',
-              'Admin Notes': 'Demo record for admin dashboard verification.'
-            }
-          ];
-        } else {
-          throw sheetErr;
-        }
-      }
+      const leads = await getLeadsFromSheet();
 
       const { status, priority, search, projectType } = req.query || {};
 
@@ -83,7 +51,8 @@ export default async function handler(req, res) {
           (l['Email'] || '').toLowerCase().includes(q) ||
           (l['Company'] || '').toLowerCase().includes(q) ||
           (l['Lead ID'] || '').toLowerCase().includes(q) ||
-          (l['Project Description'] || '').toLowerCase().includes(q)
+          (l['Project Brief'] || l['Project Description'] || '').toLowerCase().includes(q) ||
+          (l['Country'] || '').toLowerCase().includes(q)
         );
       }
 
@@ -95,11 +64,11 @@ export default async function handler(req, res) {
       });
 
     } catch (err) {
-      console.error('[Admin Leads Fetch Error]', err);
+      console.error('[Admin Leads Fetch Error]', err.message);
       return res.status(500).json({
         success: false,
         code: 'SHEETS_FETCH_FAILED',
-        message: 'Failed to retrieve leads from Google Sheets.'
+        message: `Failed to retrieve leads from Google Sheets: ${err.message}`
       });
     }
   }
@@ -117,20 +86,11 @@ export default async function handler(req, res) {
         });
       }
 
-      let updatedRecord;
-      try {
-        updatedRecord = await updateLeadInSheet(
-          leadId,
-          { status, priority, adminNotes },
-          adminUser.email
-        );
-      } catch (sheetErr) {
-        if (sheetErr.message.includes('CREDENTIALS_MISSING')) {
-          updatedRecord = { success: true, leadId, status, priority, adminNotes, mocked: true };
-        } else {
-          throw sheetErr;
-        }
-      }
+      const updatedRecord = await updateLeadInSheet(
+        leadId,
+        { status, priority, adminNotes },
+        adminUser.email
+      );
 
       return res.status(200).json({
         success: true,
@@ -139,7 +99,7 @@ export default async function handler(req, res) {
       });
 
     } catch (err) {
-      console.error('[Admin Lead Update Error]', err);
+      console.error('[Admin Lead Update Error]', err.message);
       return res.status(500).json({
         success: false,
         code: 'UPDATE_FAILED',
