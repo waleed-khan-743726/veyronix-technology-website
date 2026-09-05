@@ -153,6 +153,51 @@ function initContactFormBackend() {
     timestampInput.value = Date.now().toString();
   }
 
+  // Live character counter & helper for description
+  const descTextarea = form.querySelector('#description');
+  const charCounter = form.querySelector('#briefCharCounter');
+  if (descTextarea && charCounter) {
+    const updateCharCount = () => {
+      const len = (descTextarea.value || '').trim().length;
+      charCounter.textContent = `${len} / 10 minimum`;
+      if (len >= 10) {
+        charCounter.classList.add('valid');
+        clearFieldError('description');
+      } else {
+        charCounter.classList.remove('valid');
+      }
+    };
+    descTextarea.addEventListener('input', updateCharCount);
+    updateCharCount();
+  }
+
+  // Clear field errors on input/change
+  function clearFieldError(fieldName) {
+    const field = form.querySelector(`[name="${fieldName}"]`);
+    if (field) field.classList.remove('has-error');
+    const errMsg = form.querySelector(`#err-${fieldName}`);
+    if (errMsg) errMsg.classList.remove('visible');
+  }
+
+  function setFieldError(fieldName, message) {
+    const field = form.querySelector(`[name="${fieldName}"]`);
+    if (field) field.classList.add('has-error');
+    const errMsg = form.querySelector(`#err-${fieldName}`);
+    if (errMsg) {
+      if (message) errMsg.textContent = message;
+      errMsg.classList.add('visible');
+    }
+  }
+
+  form.querySelectorAll('input, select, textarea').forEach(input => {
+    input.addEventListener('input', () => {
+      if (input.name) clearFieldError(input.name);
+    });
+    input.addEventListener('change', () => {
+      if (input.name) clearFieldError(input.name);
+    });
+  });
+
   // Accordion toggle for optional technical details
   const toggleTechBtn = document.querySelector('[data-toggle-tech-details]');
   const techDetailsPanel = document.querySelector('[data-tech-details-panel]');
@@ -193,7 +238,7 @@ function initContactFormBackend() {
     }
 
     const submitBtn = form.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Send Project Brief';
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Send Project Brief →';
 
     const setNotice = (type, message) => {
       notice.style.display = 'block';
@@ -216,7 +261,7 @@ function initContactFormBackend() {
         notice.style.background = 'rgba(239, 68, 68, 0.12)';
         notice.style.border = '1px solid rgba(239, 68, 68, 0.35)';
         notice.style.color = '#B91C1C';
-        notice.innerHTML = `<strong>✕ Error:</strong> ${message}`;
+        notice.innerHTML = `<strong>✕ Validation Notice:</strong> ${message}`;
       }
     };
 
@@ -224,10 +269,91 @@ function initContactFormBackend() {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    if (!data.firstName || !data.email || !data.company || !data.description) {
-      setNotice('error', 'Please fill in all required fields (First Name, Work Email, Company, and Project Brief).');
+    let hasClientError = false;
+    let firstErrorField = null;
+
+    // Validate First Name
+    const firstNameVal = (data.firstName || '').trim();
+    if (!firstNameVal || firstNameVal.length < 2) {
+      setFieldError('firstName', 'Please enter a valid first name (at least 2 characters).');
+      hasClientError = true;
+      if (!firstErrorField) firstErrorField = form.querySelector('[name="firstName"]');
+    } else {
+      clearFieldError('firstName');
+    }
+
+    // Validate Last Name
+    const lastNameVal = (data.lastName || '').trim();
+    if (!lastNameVal || lastNameVal.length < 2) {
+      setFieldError('lastName', 'Please enter your last name.');
+      hasClientError = true;
+      if (!firstErrorField) firstErrorField = form.querySelector('[name="lastName"]');
+    } else {
+      clearFieldError('lastName');
+    }
+
+    // Validate Email
+    const emailVal = (data.email || '').trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailVal || !emailPattern.test(emailVal)) {
+      setFieldError('email', 'Please enter a valid email address.');
+      hasClientError = true;
+      if (!firstErrorField) firstErrorField = form.querySelector('[name="email"]');
+    } else {
+      clearFieldError('email');
+    }
+
+    // Validate Company
+    const companyVal = (data.company || '').trim();
+    if (!companyVal || companyVal.length < 2) {
+      setFieldError('company', 'Please provide your company or organization name.');
+      hasClientError = true;
+      if (!firstErrorField) firstErrorField = form.querySelector('[name="company"]');
+    } else {
+      clearFieldError('company');
+    }
+
+    // Validate Country
+    const countryVal = (data.country || '').trim();
+    if (!countryVal) {
+      setFieldError('country', 'Please select your country or region.');
+      hasClientError = true;
+      if (!firstErrorField) firstErrorField = form.querySelector('[name="country"]');
+    } else {
+      clearFieldError('country');
+    }
+
+    // Validate Project Type
+    const projectTypeVal = (data.projectType || '').trim();
+    if (!projectTypeVal) {
+      setFieldError('projectType', 'Please select a primary project type.');
+      hasClientError = true;
+      if (!firstErrorField) firstErrorField = form.querySelector('[name="projectType"]');
+    } else {
+      clearFieldError('projectType');
+    }
+
+    // Validate Project Description (minimum 10 characters)
+    const descVal = (data.description || '').trim();
+    if (!descVal || descVal.length < 10) {
+      setFieldError('description', 'Please provide at least 10 characters describing your project requirements.');
+      hasClientError = true;
+      if (!firstErrorField) firstErrorField = form.querySelector('[name="description"]');
+    } else {
+      clearFieldError('description');
+    }
+
+    if (hasClientError) {
+      setNotice('error', 'Please complete the highlighted required fields above.');
+      if (firstErrorField) {
+        firstErrorField.focus();
+        firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
       return;
     }
+
+    // Hide previous notices if valid
+    notice.style.display = 'none';
 
     // Merge marketing attribution data
     const attribution = typeof window.getVeyronixAttribution === 'function'
@@ -242,7 +368,7 @@ function initContactFormBackend() {
 
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.innerHTML = 'Transmitting Brief...';
+      submitBtn.innerHTML = 'Transmitting Project Brief...';
     }
 
     if (typeof window.trackVeyronixEvent === 'function') {
@@ -283,6 +409,10 @@ function initContactFormBackend() {
 
         form.reset();
         if (timestampInput) timestampInput.value = Date.now().toString();
+        if (charCounter) {
+          charCounter.textContent = '0 / 10 minimum';
+          charCounter.classList.remove('valid');
+        }
         if (submitBtn) submitBtn.innerHTML = '✓ Brief Received';
 
       } else if (response.status === 429) {
@@ -293,6 +423,9 @@ function initContactFormBackend() {
         if (submitBtn) submitBtn.innerHTML = originalBtnText;
 
       } else {
+        if (result.field) {
+          setFieldError(result.field, result.message);
+        }
         setNotice('error', result.message || 'We could not submit your brief right now. Please try again or contact veyronixtechnologies@gmail.com directly.');
         if (typeof window.trackVeyronixEvent === 'function') {
           window.trackVeyronixEvent('contact_form_error', { error_code: result.code || 'VALIDATION_ERROR' });

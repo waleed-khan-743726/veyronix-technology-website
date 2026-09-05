@@ -139,7 +139,7 @@ export async function appendLeadToSheet(lead) {
     sanitizeForSpreadsheet(lead.phone),
     sanitizeForSpreadsheet(lead.company),
     sanitizeForSpreadsheet(lead.website),
-    sanitizeForSpreadsheet(lead.timezone),
+    sanitizeForSpreadsheet(lead.country || lead.timezone),
     sanitizeForSpreadsheet(lead.projectType),
     sanitizeForSpreadsheet(lead.budget),
     sanitizeForSpreadsheet(lead.timeline),

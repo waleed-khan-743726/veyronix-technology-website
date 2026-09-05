@@ -38,8 +38,14 @@
   </header>
 
   <main id="main-content">
-    <section class="section section-tight" style="padding-top:60px;">
+    <section class="section section-tight" style="padding-top:40px;">
       <div class="container container-narrow">
+        <div class="back-nav-container">
+          <a href="index.html" class="back-nav-link" onclick="if(window.history.length>1){window.history.back();return false;}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            <span>Back to Home</span>
+          </a>
+        </div>
         <div class="eyebrow-pill">LEGAL & PRIVACY COMPLIANCE</div>
         <h1 class="headline-hero" style="font-size:clamp(2.4rem, 4.5vw, 3.8rem); margin-bottom:16px;">
           Privacy Policy

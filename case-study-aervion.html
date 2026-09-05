@@ -126,8 +126,11 @@
   <!-- Breadcrumb & Header -->
   <section class="section section-soft" style="padding:48px 0 36px;">
     <div class="container">
-      <div style="font-size:0.80rem; color:var(--muted); margin-bottom:12px;">
-        <a href="projects.html" style="color:var(--gold-dark); text-decoration:underline;">← Case Studies</a> / Aervion Smart Aerial Navigation
+      <div class="back-nav-container">
+        <a href="projects.html" class="back-nav-link" onclick="if(window.history.length>1){window.history.back();return false;}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          <span>Back to Case Studies</span>
+        </a>
       </div>
       <div class="eyebrow"><span class="dot"></span> APPLIED COMPUTER VISION & EMBEDDED SYSTEMS</div>
       <h1 style="font-size:clamp(2.2rem, 3.8vw, 3.2rem); margin-bottom:14px;">

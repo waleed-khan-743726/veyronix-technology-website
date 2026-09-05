@@ -72,16 +72,17 @@ export default async function handler(req, res) {
     const firstName = String(body.firstName || body.name || '').trim();
     const lastName = String(body.lastName || '').trim();
     const email = String(body.email || '').trim().toLowerCase();
-    const company = String(body.company || '').trim();
+    const company = String(body.company || body.organization || '').trim();
     const projectType = String(body.projectType || 'General Engineering Scope').trim();
     const budget = String(body.budget || '$2,500 – $5,000').trim();
-    const description = String(body.description || body.projectBrief || '').trim();
+    const description = String(body.description || body.projectBrief || body.projectDescription || body.brief || body.message || '').trim();
 
-    // Optional fields
-    const phone = String(body.phone || '').trim();
+    // Optional & Structured fields
+    const phone = String(body.phone || body.whatsapp || '').trim();
     const website = String(body.website || '').trim();
+    const country = String(body.country || '').trim();
     const timeline = String(body.timeline || 'Within 1 Month').trim();
-    const timezone = String(body.country || body.timezone || '').trim();
+    const timezone = String(body.timezone || country || '').trim();
     const techStack = String(body.currentTools || body.techStack || '').trim();
 
     // Marketing Attribution
