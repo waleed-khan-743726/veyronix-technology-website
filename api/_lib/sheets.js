@@ -126,17 +126,45 @@ export function sanitizeForSpreadsheet(val) {
 }
 
 /**
- * Normalizes service account private key handling escaped newlines and wrapping quotes
+ * Normalizes service account private key handling escaped newlines, quotes, JSON strings, and Vercel env formats
  * @param {string} key 
  * @returns {string}
  */
 export function normalizePrivateKey(key) {
   if (!key) return '';
-  let cleaned = key.trim();
-  if (cleaned.startsWith('"') && cleaned.endsWith('"')) {
-    cleaned = cleaned.slice(1, -1);
+  let str = String(key).trim();
+  
+  // 1. If entire service account JSON string was provided
+  if (str.startsWith('{') && str.endsWith('}')) {
+    try {
+      const parsed = JSON.parse(str);
+      if (parsed.private_key) {
+        str = parsed.private_key;
+      }
+    } catch (e) {}
   }
-  return cleaned.replace(/\\n/g, '\n');
+
+  // 2. Remove surrounding single, double quotes or backticks repeatedly
+  while (
+    (str.startsWith('"') && str.endsWith('"')) ||
+    (str.startsWith("'") && str.endsWith("'")) ||
+    (str.startsWith('`') && str.endsWith('`'))
+  ) {
+    str = str.slice(1, -1).trim();
+  }
+
+  // 3. Replace any sequence of 1 or more backslashes followed by n or r
+  str = str
+    .replace(/\\+r\\+n/g, '\n')
+    .replace(/\\+n/g, '\n')
+    .replace(/\\+r/g, '\n')
+    .replace(/\r\n/g, '\n')
+    .replace(/\r/g, '\n');
+
+  // Strip accidental escaped quotes
+  str = str.replace(/\\"/g, '"');
+
+  return str.trim();
 }
 
 /**
@@ -160,17 +188,51 @@ export function getColumnLetter(colNumber) {
  * @returns {Promise<{ sheets: any, spreadsheetId: string } | null>}
  */
 export async function getSheetsClient() {
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const privateKey = normalizePrivateKey(process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY);
-  const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+  let email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || process.env.GOOGLE_CLIENT_EMAIL || process.env.SERVICE_ACCOUNT_EMAIL;
+  let privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY || process.env.GOOGLE_PRIVATE_KEY || process.env.SERVICE_ACCOUNT_PRIVATE_KEY || process.env.GOOGLE_KEY;
+  let spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID || process.env.GOOGLE_SPREADSHEET_ID || process.env.SPREADSHEET_ID || '1-JtKrWMtxGkqeMsAXL90Hn9NkSGO6qholaw_ayjpll0';
 
-  if (!email || !privateKey || !spreadsheetId) {
+  // Check if entire service account JSON credentials string was provided in ANY env variable
+  const fullCredentials = process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS || process.env.GOOGLE_CREDENTIALS || process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON;
+  if (fullCredentials) {
+    try {
+      const parsed = JSON.parse(fullCredentials);
+      if (parsed.client_email && !email) email = parsed.client_email;
+      if (parsed.private_key && !privateKey) privateKey = parsed.private_key;
+      if (parsed.spreadsheet_id && !spreadsheetId) spreadsheetId = parsed.spreadsheet_id;
+    } catch(e) {}
+  }
+
+  if (email && email.trim().startsWith('{')) {
+    try {
+      const parsed = JSON.parse(email);
+      if (parsed.client_email) email = parsed.client_email;
+      if (parsed.private_key && !privateKey) privateKey = parsed.private_key;
+    } catch(e) {}
+  }
+
+  if (privateKey && privateKey.trim().startsWith('{')) {
+    try {
+      const parsed = JSON.parse(privateKey);
+      if (parsed.client_email && !email) email = parsed.client_email;
+      if (parsed.private_key) privateKey = parsed.private_key;
+    } catch(e) {}
+  }
+
+  // Fallback to the configured Veyronix CRM service account email if not set
+  if (!email) {
+    email = 'veyronix-crm@veyronix-crmveyronix-crm.iam.gserviceaccount.com';
+  }
+
+  const normalizedKey = normalizePrivateKey(privateKey);
+
+  if (!email || !normalizedKey || !spreadsheetId) {
     return null;
   }
 
   const auth = new google.auth.JWT({
     email,
-    key: privateKey,
+    key: normalizedKey,
     scopes: ['https://www.googleapis.com/auth/spreadsheets']
   });
 

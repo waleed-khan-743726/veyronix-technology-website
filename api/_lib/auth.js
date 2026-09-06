@@ -16,7 +16,28 @@ let firebaseApp = null;
 
 function normalizePrivateKey(key) {
   if (!key) return '';
-  return key.replace(/\\n/g, '\n').replace(/"/g, '');
+  let str = String(key).trim();
+  if (str.startsWith('{') && str.endsWith('}')) {
+    try {
+      const parsed = JSON.parse(str);
+      if (parsed.private_key) str = parsed.private_key;
+    } catch (e) {}
+  }
+  while (
+    (str.startsWith('"') && str.endsWith('"')) ||
+    (str.startsWith("'") && str.endsWith("'")) ||
+    (str.startsWith('`') && str.endsWith('`'))
+  ) {
+    str = str.slice(1, -1).trim();
+  }
+  str = str
+    .replace(/\\+r\\+n/g, '\n')
+    .replace(/\\+n/g, '\n')
+    .replace(/\\+r/g, '\n')
+    .replace(/\r\n/g, '\n')
+    .replace(/\r/g, '\n');
+  str = str.replace(/\\"/g, '"');
+  return str.trim();
 }
 
 function getFirebaseAdmin() {
