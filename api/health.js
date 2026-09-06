@@ -63,7 +63,7 @@ export default async function handler(req, res) {
     status: 'healthy',
     timestamp: new Date().toISOString(),
     service: 'Veyronix Production Backend',
-    version: '1.2.0',
+    version: '1.3.0',
     sheets: {
       emailConfigured: Boolean(rawEmail),
       spreadsheetIdConfigured: Boolean(rawSheetId),

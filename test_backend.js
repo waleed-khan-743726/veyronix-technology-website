@@ -130,7 +130,7 @@ async function runTests() {
     await healthHandler(req, res);
     assert(res.statusCode === 200, 'Health endpoint returns HTTP 200');
     assert(res.data && res.data.status === 'healthy', 'Reports healthy status');
-    assert(res.data.version === '1.2.0', 'Reports correct version 1.2.0');
+    assert(res.data.version === '1.3.0', 'Reports correct version 1.3.0');
     assert(typeof res.data.integrations === 'object', 'Includes integrations status object');
   }
 
