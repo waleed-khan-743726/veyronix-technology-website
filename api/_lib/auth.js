@@ -36,7 +36,19 @@ function normalizePrivateKey(key) {
     .replace(/\\+r/g, '\n')
     .replace(/\r\n/g, '\n')
     .replace(/\r/g, '\n');
-  str = str.replace(/\\"/g, '"');
+  str = str.replace(/\\"/g, '"').trim();
+
+  if (!str.includes('-----BEGIN')) {
+    const cleanBase64 = str.replace(/[\r\n\s]/g, '');
+    const lines = [];
+    for (let i = 0; i < cleanBase64.length; i += 64) {
+      lines.push(cleanBase64.slice(i, i + 64));
+    }
+    str = `-----BEGIN PRIVATE KEY-----\n${lines.join('\n')}\n-----END PRIVATE KEY-----\n`;
+  } else if (!str.includes('-----END')) {
+    str = `${str}\n-----END PRIVATE KEY-----\n`;
+  }
+
   return str.trim();
 }
 

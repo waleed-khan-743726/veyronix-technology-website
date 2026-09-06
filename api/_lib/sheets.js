@@ -162,7 +162,19 @@ export function normalizePrivateKey(key) {
     .replace(/\r/g, '\n');
 
   // Strip accidental escaped quotes
-  str = str.replace(/\\"/g, '"');
+  str = str.replace(/\\"/g, '"').trim();
+
+  // 4. If missing standard PEM header/footer, automatically wrap in 64-column format
+  if (!str.includes('-----BEGIN')) {
+    const cleanBase64 = str.replace(/[\r\n\s]/g, '');
+    const lines = [];
+    for (let i = 0; i < cleanBase64.length; i += 64) {
+      lines.push(cleanBase64.slice(i, i + 64));
+    }
+    str = `-----BEGIN PRIVATE KEY-----\n${lines.join('\n')}\n-----END PRIVATE KEY-----\n`;
+  } else if (!str.includes('-----END')) {
+    str = `${str}\n-----END PRIVATE KEY-----\n`;
+  }
 
   return str.trim();
 }
