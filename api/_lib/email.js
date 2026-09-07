@@ -183,7 +183,7 @@ export async function sendClientConfirmationEmail(lead) {
 
     <p style="color:#9E9689; font-size:13px;">
       Veyronix Technology Private Limited<br>
-      <a href="mailto:veyronixtechnologies@gmail.com" style="color:#D5B45F; text-decoration:none;">veyronixtechnologies@gmail.com</a> · +92 339 0023451
+      <a href="mailto:veyronixtechnologies@gmail.com" style="color:#D5B45F; text-decoration:none;">veyronixtechnologies@gmail.com</a> · +92 305 1563944
     </p>
 
     <div class="footer">
