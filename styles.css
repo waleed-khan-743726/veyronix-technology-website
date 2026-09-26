@@ -1853,6 +1853,324 @@ textarea.form-input-underline {
 }
 
 /* ==========================================================================
+   3-DIVISION ARCHITECTURE & HOMEPAGE SHOWCASE STYLES
+   ========================================================================== */
+
+/* Division Showcase Container on Homepage */
+.divisions-showcase-container {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.division-feature-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+  position: relative;
+}
+
+.division-feature-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.division-feature-panel:hover {
+  border-color: var(--border-card-hover);
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow-lg), var(--shadow-gold-lg);
+  transform: translateY(-4px);
+}
+
+.division-feature-panel:hover::before {
+  opacity: 1;
+}
+
+.division-panel-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  gap: 48px;
+  padding: 56px 48px;
+}
+
+.division-panel-grid.reverse {
+  grid-template-columns: 1fr 1.15fr;
+}
+
+.division-panel-grid.reverse .division-panel-info {
+  order: 2;
+}
+
+.division-panel-grid.reverse .division-panel-media {
+  order: 1;
+}
+
+.division-number-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.division-number-badge span {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--gold-primary);
+}
+
+.division-panel-info h3 {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  margin-bottom: 14px;
+}
+
+.division-panel-info .division-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 16px;
+}
+
+.division-panel-info .lead {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+/* Interactive Action Words (VOICE • CALL • QUALIFY • CONVERT, etc.) */
+.division-action-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.action-pill {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-white);
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.division-feature-panel:hover .action-pill {
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+  background: rgba(201, 149, 74, 0.08);
+}
+
+.division-panel-media {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 16/10;
+}
+
+.division-panel-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.division-feature-panel:hover .division-panel-media img {
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   DEDICATED DIVISION PAGE HEROES & ARCHITECTURE FLOW
+   ========================================================================== */
+.division-page-hero {
+  padding: 100px 0 70px;
+  position: relative;
+  background: radial-gradient(circle at 75% 20%, rgba(201, 149, 74, 0.12) 0%, transparent 60%);
+  border-bottom: 1px solid var(--border-white);
+}
+
+.division-page-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 56px;
+}
+
+.division-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.division-page-hero h1 {
+  font-size: clamp(2.8rem, 5.2vw, 4.6rem);
+  font-weight: 800;
+  line-height: 1.04;
+  margin-bottom: 18px;
+}
+
+.division-page-hero .lead {
+  font-size: 1.12rem;
+  margin-bottom: 32px;
+}
+
+/* Technical Architecture Flow Container */
+.technical-flow-stage {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 44px 36px;
+  box-shadow: var(--shadow-lg), var(--shadow-gold);
+  margin: 48px 0;
+}
+
+.flow-step-sequence {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.flow-node-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-white);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 140px;
+  transition: var(--transition);
+}
+
+.flow-node-box:hover {
+  border-color: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--gold-glow);
+}
+
+.flow-node-box b {
+  font-size: 0.90rem;
+  color: var(--text-primary);
+}
+
+.flow-node-box small {
+  font-size: 0.74rem;
+  color: var(--gold-light);
+}
+
+.flow-connector-arrow {
+  color: var(--gold-light);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Solution Family Groupings */
+.solution-family-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.solution-family-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-card-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md), var(--shadow-gold);
+}
+
+.solution-family-card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.solution-family-card p {
+  font-size: 0.90rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.solution-capabilities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--border-white);
+  padding-top: 16px;
+  margin-bottom: 24px;
+}
+
+.solution-capabilities-list li {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.solution-capabilities-list li::before {
+  content: '→';
+  color: var(--gold-light);
+  font-weight: bold;
+}
+
+/* Responsive Media Updates for Division Panels */
+@media (max-width: 1100px) {
+  .division-panel-grid,
+  .division-panel-grid.reverse,
+  .division-page-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 36px 28px;
+  }
+  .division-panel-grid.reverse .division-panel-info {
+    order: 1;
+  }
+  .division-panel-grid.reverse .division-panel-media {
+    order: 2;
+  }
+}
+
+/* ==========================================================================
    RESPONSIVE MEDIA QUERIES
    ========================================================================== */
 @media (max-width: 1200px) {
