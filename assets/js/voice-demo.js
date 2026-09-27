@@ -13,7 +13,8 @@ function updatePairingMode(){
  let local=false;try{const u=new URL($('backend').value);local=u.origin===location.origin&&u.protocol==='http:'&&['127.0.0.1','localhost'].includes(u.hostname);}catch{}
  $('code').disabled=local;$('code').placeholder=local?'Automatic on this computer':'From your local backend';
  if(local)$('code').value='';
- document.querySelector('label[for="code"]').textContent=local?'Local access - no code required':'Private pairing code';
+ const pairingLabel=document.querySelector('label[for="code"]');
+ if(pairingLabel)pairingLabel.textContent=local?'Local access - no code required':'Private pairing code';
 }
 $('backend').addEventListener('input',updatePairingMode);updatePairingMode();
 $('transcript').addEventListener('scroll',()=>{const el=$('transcript');autoScroll=el.scrollHeight-el.scrollTop-el.clientHeight<60;});
