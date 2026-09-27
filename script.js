@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDropdownA11y();
   initContactFormBackend();
   initCopyrightYear();
+  initDetectionVideoControls();
 });
 
 /* ==========================================================================
@@ -449,5 +450,60 @@ function initContactFormBackend() {
 function initCopyrightYear() {
   document.querySelectorAll('[data-year]').forEach(el => {
     el.textContent = new Date().getFullYear();
+  });
+}
+
+/* ==========================================================================
+   6. VEYRONIX DETECTION — FIELD TEST VIDEO CONTROLLER
+   ========================================================================== */
+function initDetectionVideoControls() {
+  const stage = document.querySelector('.detection-fieldtest-stage');
+  if (!stage) return;
+
+  const playPauseBtn = stage.querySelector('[data-video-toggle-play]');
+  const muteBtn = stage.querySelector('[data-video-toggle-mute]');
+
+  window._wq = window._wq || [];
+  window._wq.push({
+    id: 'v2ehtdtd2u',
+    onReady: function(video) {
+      if (playPauseBtn) {
+        playPauseBtn.addEventListener('click', () => {
+          if (video.state() === 'playing') {
+            video.pause();
+            playPauseBtn.innerHTML = '▶ Play';
+            playPauseBtn.setAttribute('aria-label', 'Play field test video');
+          } else {
+            video.play();
+            playPauseBtn.innerHTML = '⏸ Pause';
+            playPauseBtn.setAttribute('aria-label', 'Pause field test video');
+          }
+        });
+
+        video.bind('play', () => {
+          playPauseBtn.innerHTML = '⏸ Pause';
+          playPauseBtn.setAttribute('aria-label', 'Pause field test video');
+        });
+
+        video.bind('pause', () => {
+          playPauseBtn.innerHTML = '▶ Play';
+          playPauseBtn.setAttribute('aria-label', 'Play field test video');
+        });
+      }
+
+      if (muteBtn) {
+        muteBtn.addEventListener('click', () => {
+          if (video.isMuted()) {
+            video.unmute();
+            muteBtn.innerHTML = '🔊 Sound On';
+            muteBtn.setAttribute('aria-label', 'Mute field test video audio');
+          } else {
+            video.mute();
+            muteBtn.innerHTML = '🔇 Muted';
+            muteBtn.setAttribute('aria-label', 'Unmute field test video audio');
+          }
+        });
+      }
+    }
   });
 }
