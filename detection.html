@@ -7,6 +7,8 @@
   <meta name="description" content="Veyronix Detection engineers computer vision models, real-time face detection, object tracking, edge vision processing, and autonomous drone flight systems.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fast.wistia.net">
+  <link rel="preconnect" href="https://embed-ssl.wistia.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32x32.png">
@@ -94,14 +96,70 @@
           <span class="action-pill">EDGE AI</span>
         </div>
 
+        <div class="division-proof-quote">
+          <strong style="color:var(--gold-light);">Built & Tested in the Physical World:</strong> We engineer computer vision algorithms that operate outside the screen — powering actual autonomous hardware and real-time camera systems.
+        </div>
+
         <div class="hero-actions">
           <a class="btn btn-primary btn-lg" href="contact.html">Explore Vision Engineering →</a>
           <a class="link-gold" href="#aervion-showcase">View Aervion Project ↓</a>
         </div>
       </div>
 
-      <div class="division-panel-media">
-        <img src="assets/images/division-detection.jpg" alt="Veyronix Detection Computer Vision Sensor Interface" width="800" height="500" fetchpriority="high">
+      <!-- Real-World Video Proof Stage -->
+      <div class="detection-fieldtest-stage" id="detection-fieldtest">
+        <!-- Top Status Bar -->
+        <div class="fieldtest-stage-header">
+          <div class="fieldtest-status-pill">
+            <span class="fieldtest-live-dot" aria-hidden="true"></span>
+            <span class="fieldtest-status-text">REAL-WORLD FIELD TEST</span>
+          </div>
+          <div class="fieldtest-tech-label">DRONE & OPTICAL TRACKING</div>
+        </div>
+
+        <!-- Video Player Container (Portrait Aspect Ratio Optimized) -->
+        <div class="fieldtest-video-wrapper">
+          <div class="fieldtest-video-frame">
+            <iframe
+              src="https://fast.wistia.net/embed/iframe/v2ehtdtd2u?autoplay=1&muted=1&playsinline=1&endVideoBehavior=loop&controlsVisibleOnLoad=false&playbar=false&smallPlayButton=false&volumeControl=false&fullscreenButton=false"
+              title="Veyronix Detection Real-World Drone Flight and Computer Vision Field Test"
+              allow="autoplay; fullscreen"
+              allowtransparency="true"
+              frameborder="0"
+              scrolling="no"
+              class="wistia-video-iframe"
+              id="wistia-detection-video"
+              loading="eager">
+            </iframe>
+            
+            <!-- Video Atmospheric Vignette Overlay -->
+            <div class="fieldtest-vignette-overlay" aria-hidden="true"></div>
+
+            <!-- Video Micro-Controls Overlay -->
+            <div class="fieldtest-controls-overlay">
+              <button type="button" class="fieldtest-control-btn" data-video-toggle-play aria-label="Pause or play field test video">
+                ⏸ Pause
+              </button>
+              <button type="button" class="fieldtest-control-btn" data-video-toggle-mute aria-label="Toggle field test video audio">
+                🔇 Muted
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Technical Caption / Editorial Proof Bar -->
+        <div class="fieldtest-stage-footer">
+          <div class="fieldtest-proof-title">
+            <span class="goldtext">BUILT. TESTED. IN THE REAL WORLD.</span>
+          </div>
+          <p class="fieldtest-caption">
+            Authentic physical-world drone flight and computer vision tracking footage captured during live system testing.
+          </p>
+          <div class="fieldtest-meta-bar">
+            <span class="fieldtest-tag">APPLIED COMPUTER VISION</span>
+            <span class="fieldtest-tag">AUTONOMOUS FLIGHT LOOP</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -297,6 +355,7 @@
     </div>
   </footer>
 
+  <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
   <script src="script.js"></script>
 </body>
 </html>
