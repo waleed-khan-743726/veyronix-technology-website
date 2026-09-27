@@ -63,6 +63,9 @@
   --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Veyronix Outbound live voice demo */
+.live-demo-promo-section{padding-top:34px!important;padding-bottom:34px!important}.live-demo-promo{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:45px;align-items:center;padding:42px 46px;border:1px solid rgba(201,168,76,.24);background:radial-gradient(circle at 85% 30%,rgba(201,168,76,.14),transparent 30%),linear-gradient(135deg,rgba(24,24,27,.98),rgba(9,10,12,.98));box-shadow:0 30px 90px rgba(0,0,0,.28)}.live-demo-promo h2{margin:12px 0 14px;font:700 clamp(1.8rem,4vw,3rem)/1.08 'Plus Jakarta Sans',sans-serif;letter-spacing:-.04em}.live-demo-promo p{max-width:720px;color:var(--text-secondary);line-height:1.72}.live-demo-points{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}.live-demo-points span{padding:7px 10px;border:1px solid var(--border-subtle);color:var(--text-muted);font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.live-demo-promo-action{display:flex;align-items:center;flex-direction:column;gap:15px;text-align:center}.live-demo-promo-action small{color:var(--text-muted);font-size:.65rem}.live-demo-orb{display:flex;width:88px;height:88px;align-items:center;justify-content:center;gap:5px;border:1px solid rgba(201,168,76,.34);border-radius:50%;color:var(--gold-light);box-shadow:0 0 50px rgba(201,168,76,.12)}.live-demo-orb i{width:3px;height:18px;border-radius:3px;background:currentColor}.live-demo-orb i:nth-child(2),.live-demo-orb i:nth-child(4){height:34px}.live-demo-orb i:nth-child(3){height:48px}@media(max-width:720px){.live-demo-promo{grid-template-columns:1fr;padding:32px 24px}.live-demo-promo-action{align-items:flex-start}.live-demo-orb{display:none}}
+
 /* Base Reset */
 *, *::before, *::after {
   box-sizing: border-box;
