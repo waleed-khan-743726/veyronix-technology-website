@@ -57,7 +57,7 @@
         <a class="demo-back" href="outbound.html">← Veyronix Outbound</a>
         <div class="section-kicker"><span class="dot"></span> LIVE PRODUCT DEMONSTRATION</div>
         <h1>Speak with our <span class="goldtext">Final Expense Agent.</span></h1>
-        <p>Experience a short qualification conversation powered by local speech recognition and Kathee's prerecorded voice. No phone number or customer record is required.</p>
+        <p>Choose Evelyn or Marry for a short qualification conversation powered by local speech recognition and a prerecorded voice. No phone number or customer record is required.</p>
       </div>
       <div class="demo-trust"><span><b>01</b> Browser microphone</span><span><b>02</b> Local CPU recognition</span><span><b>03</b> Test-only outcome</span></div>
     </section>
@@ -74,11 +74,11 @@
           <p class="demo-error" id="error" role="alert" hidden></p>
         </div>
         <div class="transcript-head"><h3>Live transcript</h3><span id="turnCount">No turns yet</span></div>
-        <div id="transcript" class="demo-transcript" role="log" aria-label="Conversation transcript"><div id="empty" class="transcript-empty"><div class="empty-ring">V</div><h4>Your conversation will appear here</h4><p>Kathee will introduce the demo and guide the qualification flow.</p></div></div>
+          <div id="transcript" class="demo-transcript" role="log" aria-label="Conversation transcript"><div id="empty" class="transcript-empty"><div class="empty-ring">V</div><h4>Your conversation will appear here</h4><p>Your selected agent will introduce the demo and guide the qualification flow.</p></div></div>
       </div>
 
       <aside class="demo-sidebar">
-        <div class="demo-card session-card"><div class="card-label">SESSION</div><div class="session-clock"><span>Elapsed time</span><strong id="timer">00:00</strong></div><label for="microphone">Microphone input</label><select id="microphone"><option value="">System default</option></select><div class="privacy-note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><div><p><b>Private demo mode</b><br>Your microphone is used only for this live session unless you explicitly enable diagnostic capture.</p><label class="diagnostic-consent"><input id="diagnostic" type="checkbox"> Privately save this test’s received and recognition audio for troubleshooting.</label></div></div></div>
+        <div class="demo-card session-card"><div class="card-label">SESSION</div><div class="session-clock"><span>Elapsed time</span><strong id="timer">00:00</strong></div><label for="agent">Voice agent</label><select id="agent"><option value="Agent-1-Evelyn" selected>Agent 1 — Evelyn</option><option value="Agent-2-Marry">Agent 2 — Marry</option></select><label for="microphone" class="session-field">Microphone input</label><select id="microphone"><option value="">System default</option></select><div class="privacy-note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><div><p><b>Private demo mode</b><br>Your microphone is used only for this live session unless you explicitly enable diagnostic capture.</p><label class="diagnostic-consent"><input id="diagnostic" type="checkbox"> Privately save this test’s received and recognition audio for troubleshooting.</label></div></div></div>
         <div class="demo-card demo-disclaimer"><div class="card-label">CONTROLLED EXPERIENCE</div><p>This browser demonstration uses simulated outcomes. It does not place calls, update VICIdial, transfer a caller, or create a customer record.</p></div>
       </aside>
     </section>
